@@ -7,7 +7,7 @@ jobs:
 		name: Select docker container
 		working_directory: ~/zm-selenium
 		docker:
-		   - image: consol/ubuntu-xfce-vnc
+		   - image: ubuntu:16.04
 
 	install_pre_requisites:
 		name: Install pre-requsites
