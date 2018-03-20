@@ -1,0 +1,44 @@
+version: 2
+
+############################################################################
+
+jobs:
+	checkout:
+		name: Select docker container
+		working_directory: ~/zm-selenium
+		docker:
+		   - image: consol/ubuntu-xfce-vnc
+
+	install_pre_requisites:
+		name: Install pre-requsites
+		command: .circleci/prepare-box.sh
+
+	checkout_dependencies:
+		name: Checkout dependent repos
+		command: .circleci/checkout-repo.sh
+
+	build_dependencies:
+		name: Compile zm-mailbox
+		working_directory: ~/zm-mailbox
+		command: ant publish-local-all -Dzimbra.buildinfo.version=8.8.0_GA
+
+	run_selenium_tests:
+		name: Run selenium tests
+		working_directory: ~/zm-selenium
+		command: ant Run-ExecuteHarnessMain -Dpattern startatt.tests.competitors -Dgroups always,L0
+
+	test_output:
+		root: ../..
+		paths: ~/zm-selenium/test-output
+
+workflows:
+	build_selenium:
+		jobs:
+			- checkout
+			- install_pre_requisites
+			- checkout_dependencies
+			- build_dependencies
+			- run_selenium_tests
+			- test_output
+
+############################################################################
