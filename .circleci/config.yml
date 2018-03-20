@@ -32,6 +32,8 @@ jobs:
       paths: ~/zm-selenium/test-output/*
 
 workflows:
+   version: 2
+   build_selenium:
       jobs:
          - checkout
          - install_pre_requisites
