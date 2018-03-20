@@ -8,28 +8,39 @@ jobs:
       working_directory: ~/zm-selenium
       docker:
          - image: consol/ubuntu-xfce-vnc
+      steps:
+         - run:
+           name: Checking out dependencies
 
    install_pre_requisites:
-      name: Install pre-requsites
-      run: .circleci/prepare-box.sh
+      steps:
+         - run:
+            name: Install pre-requsites
+            command: .circleci/prepare-box.sh
 
    checkout_dependencies:
-      name: Checkout dependent repos
-      run: .circleci/checkout-repo.sh
+      steps:
+         - run:
+            name: Checkout dependent repos
+            command: .circleci/checkout-repo.sh
 
    build_dependencies:
-      name: Compile zm-mailbox
-      working_directory: ~/zm-mailbox
-      run: ant publish-local-all -Dzimbra.buildinfo.version=8.8.0_GA
+       steps:
+          - run:
+            name: Compile zm-mailbox
+            working_directory: ~/zm-mailbox
+            command: ant publish-local-all -Dzimbra.buildinfo.version=8.8.0_GA
 
    run_selenium_tests:
-      name: Run selenium tests
-      working_directory: ~/zm-selenium
-      run: ant Run-ExecuteHarnessMain -Dpattern startatt.tests.competitors -Dgroups always,L0
+       steps:
+          - run:
+            name: Run selenium tests
+            working_directory: ~/zm-selenium
+            command: ant Run-ExecuteHarnessMain -Dpattern startatt.tests.competitors -Dgroups always,L0
 
    persist_to_workspace:
-      root: ../..
-      paths: ~/zm-selenium/test-output/*
+         root: ../..
+         paths: ~/zm-selenium/test-output/*
 
 workflows:
    version: 2
