@@ -7,7 +7,7 @@ jobs:
 		name: Select docker container
 		working_directory: ~/zm-selenium
 		docker:
-		   - image: ubuntu:16.04
+		   - image: consol/ubuntu-xfce-vnc
 
 	install_pre_requisites:
 		name: Install pre-requsites
@@ -27,9 +27,9 @@ jobs:
 		working_directory: ~/zm-selenium
 		command: ant Run-ExecuteHarnessMain -Dpattern startatt.tests.competitors -Dgroups always,L0
 
-	test_output:
+	persist_to_workspace:
 		root: ../..
-		paths: ~/zm-selenium/test-output
+		paths: ~/zm-selenium/test-output/*
 
 workflows:
 	build_selenium:
@@ -39,6 +39,6 @@ workflows:
 			- checkout_dependencies
 			- build_dependencies
 			- run_selenium_tests
-			- test_output
+			- persist_to_workspace
 
 ############################################################################
