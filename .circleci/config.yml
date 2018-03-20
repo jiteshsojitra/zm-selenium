@@ -11,21 +11,21 @@ jobs:
 
    install_pre_requisites:
       name: Install pre-requsites
-      command: .circleci/prepare-box.sh
+      run: .circleci/prepare-box.sh
 
    checkout_dependencies:
       name: Checkout dependent repos
-      command: .circleci/checkout-repo.sh
+      run: .circleci/checkout-repo.sh
 
    build_dependencies:
       name: Compile zm-mailbox
       working_directory: ~/zm-mailbox
-      command: ant publish-local-all -Dzimbra.buildinfo.version=8.8.0_GA
+      run: ant publish-local-all -Dzimbra.buildinfo.version=8.8.0_GA
 
    run_selenium_tests:
       name: Run selenium tests
       working_directory: ~/zm-selenium
-      command: ant Run-ExecuteHarnessMain -Dpattern startatt.tests.competitors -Dgroups always,L0
+      run: ant Run-ExecuteHarnessMain -Dpattern startatt.tests.competitors -Dgroups always,L0
 
    persist_to_workspace:
       root: ../..
