@@ -7,8 +7,6 @@ jobs:
       docker:
          - image: consol/ubuntu-xfce-vnc
       steps:
-         - checkout
-              name: Checking out dependencies
          - run:
               name: Install pre-requsites
               command: .circleci/prepare-box.sh
