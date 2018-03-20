@@ -21,10 +21,6 @@ jobs:
                name: Run selenium tests
                working_directory: ~/zm-selenium
                command: ant Run-ExecuteHarnessMain -Dpattern startatt.tests.competitors -Dgroups always,L0
-         - run:
-               name: Persist to workspace
-               root: ../..
-               paths: ~/zm-selenium/test-output/*
 
 workflows:
    version: 2
