@@ -7,10 +7,10 @@ jobs:
       docker:
          - image: jiteshsojitra/docker-headless-vnc-container
       environment:
-         - CIRCLE_WORKING_DIRECTORY: /headless
+         - HOME: /headless
+      working_directory: /zm-selenium
       steps:
-         - checkout:
-              CIRCLE_WORKING_DIRECTORY: /headless
+         - checkout              
          - run:
               name: Install prerequisites
               command: bash .circleci/install-prerequisites.sh
@@ -20,11 +20,11 @@ jobs:
          - run:
               name: Compile zm-mailbox
               working_directory: ~/zm-mailbox
-              command: ant publish-local-all -Ddev.home=$CIRCLE_WORKING_DIRECTORY -Dzimbra.buildinfo.version=8.8.0_GA
+              command: ant publish-local-all -Duser.home=$HOME -Dzimbra.buildinfo.version=8.8.0_GA
          - run:
               name: Run selenium tests
               working_directory: ~/zm-selenium
-              command: ant Run-ExecuteHarnessMain -Ddev.home=$CIRCLE_WORKING_DIRECTORY -Dpattern startatt.tests.competitors -Dgroups always,L0
+              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern startatt.tests.competitors -Dgroups always,L0
 
 workflows:
    version: 2
