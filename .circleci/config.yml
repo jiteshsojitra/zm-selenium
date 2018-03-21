@@ -26,6 +26,8 @@ jobs:
               name: Run selenium tests
               working_directory: ~/zm-selenium
               command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern startatt.tests.competitors -Dgroups always,L0
+         - test-output:
+              path: ~/zm-selenium/test-output
 
 workflows:
    version: 2
