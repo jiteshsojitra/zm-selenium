@@ -11,7 +11,7 @@ jobs:
          - checkout
          - run:
               name: Install pre-requsites
-              command: sudo su root ; .circleci/prepare-box.sh
+              command: su root ; .circleci/prepare-box.sh
          - run:
                name: Checkout dependent repos
                command: .circleci/checkout-repo.sh
