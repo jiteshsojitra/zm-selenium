@@ -8,9 +8,10 @@ jobs:
          - image: jiteshsojitra/docker-headless-vnc-container
       environment:
          - HOME: /headless
+	 - working_directory: /headless
       steps:
          - checkout:
-              working_directory: ~
+              working_directory: $working_directory
          - run:
               name: Install prerequisites
               command: bash .circleci/install-prerequisites.sh
