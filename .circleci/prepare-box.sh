@@ -6,8 +6,6 @@ set -euo pipefail
 # Setup
 mkdir -p ~/.zcs-deps
 mkdir -p ~/.ivy2/cache
-cd ~/.zcs-deps
-wget https://files.zimbra.com/repository/ant-contrib/ant-contrib-1.0b1.jar
 
 # Environment variables
 export DEBIAN_FRONTEND=noninteractive
@@ -42,3 +40,7 @@ RUN apt-get install -y oracle-java8-installer oracle-java8-set-default
 # Chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
+
+# Ant contrib
+cd ~/.zcs-deps
+wget https://files.zimbra.com/repository/ant-contrib/ant-contrib-1.0b1.jar
