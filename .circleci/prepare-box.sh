@@ -1,8 +1,7 @@
 #!/bin/bash
 
 set -x
-set -e
-set -o pipefail
+set -euo pipefail
 
 # Setup
 mkdir -p ~/.zcs-deps
