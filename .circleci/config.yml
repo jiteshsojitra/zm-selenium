@@ -18,6 +18,12 @@ jobs:
       steps:
          - checkout
          - run:
+              name: Start xfce
+              command: startxfce4
+         - run:
+              name: Environment variable
+              command: env
+         - run:
               name: Checkout dependent repos
               command: bash .circleci/checkout-repos.sh
          - run:
