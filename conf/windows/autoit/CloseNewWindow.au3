@@ -1,1 +1,0 @@
-WinClose ("Close - New Window");

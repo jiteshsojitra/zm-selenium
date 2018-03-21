@@ -1,1 +1,0 @@
-These mime messages have valid/invalid URLs for testing the URL zimlet

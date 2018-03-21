@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
-	<info organisation="zimbra" module="zm-selenium" status="integration"> </info>
+	<info organisation="synacor" module="startatt" status="integration"> </info>
 	<dependencies>
 		<dependency org="ant-contrib" name="ant-contrib" rev="1.0b3"/>
-		<dependency org="ant-tar-patched" name="ant-tar-patched" rev="1.0"/>
 		<dependency org="com.google.guava" name="guava" rev="23.0"/>
 		<dependency org="com.jcraft" name="jsch" rev="0.1.53"/>
+		<dependency org="com.squareup.okhttp3" name="okhttp" rev="3.9.1"/>
+		<dependency org="com.squareup.okio" name="okio" rev="1.13.0"/>
 		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.7.0"/>
 		<dependency org="commons-cli" name="commons-cli" rev="1.2"/>
 		<dependency org="commons-codec" name="commons-codec" rev="1.7"/>
@@ -20,7 +21,6 @@
 		<dependency org="javax.mail" name="mail" rev="1.4.5"/>
 		<dependency org="javax.servlet" name="javax.servlet-api" rev="3.1.0"/>
 		<dependency org="jaxen" name="jaxen" rev="1.1-beta-6"/>
-		<dependency org="libidn" name="libidn" rev="1.24"/>
 		<dependency org="log4j" name="apache-log4j-extras" rev="1.0"/>
 		<dependency org="log4j" name="log4j" rev="1.2.16"/>
 		<dependency org="net.sf.ezmorph" name="ezmorph" rev="1.0.6"/>
@@ -40,17 +40,15 @@
 		<dependency org="org.testng" name="testng" rev="5.12.1"/>
 		<dependency org="xalan" name="serializer" rev="2.7.2"/>
 		<dependency org="xml-apis" name="xml-apis" rev="2.0.2"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-api" rev="3.7.1"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-chrome-driver" rev="3.7.1"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-edge-driver" rev="3.7.1"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-firefox-driver" rev="3.7.1"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-ie-driver" rev="3.7.1"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-java" rev="3.7.1"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-remote-driver" rev="3.7.1"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-safari-driver" rev="3.7.1"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-server" rev="3.7.1"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-support" rev="3.7.1"/>
-		<dependency org="zimbra" name="zm-native" rev="latest.integration"/>
-        <dependency org="zimbra" name="zm-common" rev="latest.integration"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-api" rev="3.9.1"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-chrome-driver" rev="3.9.1"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-edge-driver" rev="3.9.1"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-firefox-driver" rev="3.9.1"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-ie-driver" rev="3.9.1"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-java" rev="3.9.1"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-remote-driver" rev="3.9.1"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-safari-driver" rev="3.9.1"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-server" rev="3.9.1"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-support" rev="3.9.1"/>
 	</dependencies>
 </ivy-module>
