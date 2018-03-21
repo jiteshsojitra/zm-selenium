@@ -5,7 +5,10 @@ set -euxo pipefail
 # Environment variables
 export DEBIAN_FRONTEND=noninteractive
 
+export DISPLAY=":0.0"
 xdg-open http://www.google.com
+exit;
+
 #xdg-open http://localhost:6901/?password=vncpassword
 
 git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-mailbox.git ~/zm-mailbox
