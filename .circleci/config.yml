@@ -18,11 +18,11 @@ jobs:
          - run:
               name: Compile zm-mailbox
               working_directory: ~/zm-mailbox
-              command: ant publish-local-all -Ddev.home=~ -Dzimbra.buildinfo.version=8.8.0_GA
+              command: ant publish-local-all -Ddev.home=/headless -Dzimbra.buildinfo.version=8.8.0_GA
          - run:
               name: Run selenium tests
               working_directory: ~/zm-selenium
-              command: ant Run-ExecuteHarnessMain -Ddev.home=~ -Dpattern startatt.tests.competitors -Dgroups always,L0
+              command: ant Run-ExecuteHarnessMain -Ddev.home=/headless -Dpattern startatt.tests.competitors -Dgroups always,L0
 
 workflows:
    version: 2
