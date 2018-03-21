@@ -27,7 +27,9 @@ apt-get -qq install -y apt-utils \
 	wget \
 	iputils-ping \
 	git \
-	firefox
+	firefox \
+	fonts-liberation \
+	libappindicator1
 
 # Java
 echo "===> add webupd8 repository..."  && \
