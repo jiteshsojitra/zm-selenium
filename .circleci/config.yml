@@ -8,21 +8,14 @@ jobs:
          - image: jiteshsojitra/docker-headless-vnc-container
       environment:
          - zimbra.version: 8.8.0_GA
-         - DISPLAY: :1.0
-         - XDG_CONFIG_DIRS=/etc/xdg
-         - DESKTOP_SESSION=xfce
-         - XDG_DATA_DIRS=/usr/share/xfce4:/usr/local/share:/usr/share:/usr/share
-         - XDG_CURRENT_DESKTOP=XFCE
-         - COLORTERM=xfce4-terminal
       working_directory: ~/zm-selenium
       steps:
          - checkout
-         - run:
-              name: Start xfce
-              command: startxfce4
-         - run:
-              name: Environment variable
-              command: env
+         dependencies:
+            post:
+               - sudo apt-get install -y x11vnc
+               - x11vnc -forever -nopw:
+            background: true
          - run:
               name: Checkout dependent repos
               command: bash .circleci/checkout-repos.sh
