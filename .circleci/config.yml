@@ -9,7 +9,6 @@ jobs:
       steps:
          - checkout:
             working_directory: ~/checkout/zm-selenium
-            shell: /bin/bash -euo pipefail
          - run:
               name: Install pre-requsites
               command: .circleci/prepare-box.sh
