@@ -11,8 +11,10 @@ mkdir -p ~/.ivy2/cache
 export DEBIAN_FRONTEND=noninteractive
 export GIT_BRANCH=develop
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export ROOT_DIR=/root
 
 # Update the repository sources list
+cd $ROOT_DIR
 apt-get -qq -y autoremove
 apt-get -qq -y update
 

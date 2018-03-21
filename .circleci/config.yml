@@ -10,7 +10,7 @@ jobs:
          - checkout:
             working_directory: ~/checkout/zm-selenium
          - run:
-              name: Install pre-requsites
+              name: Install pre-requisites
               command: bash .circleci/prepare-box.sh
          - run:
                name: Checkout dependent repos
