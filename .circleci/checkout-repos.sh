@@ -5,7 +5,7 @@ set -euxo pipefail
 # Environment variables
 export DEBIAN_FRONTEND=noninteractive
 
-export DISPLAY=":0.0"
+export DISPLAY=":1"
 xdg-open http://www.google.com
 exit;
 
