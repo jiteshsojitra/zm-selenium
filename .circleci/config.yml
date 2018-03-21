@@ -11,11 +11,10 @@ jobs:
       working_directory: ~/zm-selenium
       steps:
          - checkout
-         - dependencies
+         dependencies:
             post:
                - sudo apt-get install -y x11vnc
-               - x11vnc -forever -nopw:
-            background: true
+               - x11vnc -forever -nopw: background: true
          - run:
               name: Checkout dependent repos
               command: bash .circleci/checkout-repos.sh
