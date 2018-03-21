@@ -2,11 +2,6 @@
 
 set -euxo pipefail
 
-pwd
-cd ~
-ls -l
-exit;
-
 # Setup
 mkdir -p ~/.zcs-deps
 mkdir -p ~/.ivy2/cache
