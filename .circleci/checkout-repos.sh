@@ -6,8 +6,7 @@ set -euxo pipefail
 export DEBIAN_FRONTEND=noninteractive
 
 #startx
-apt-get install xvfb
-Xvfb :0 -screen 0 1920x1080x24 +extension GLX -nolisten tcp -dpi 96
+Xvfb :0 -screen 0 800x6000x24 +extension GLX -nolisten tcp -dpi 96
 export DISPLAY=:0
 xdg-open http://www.google.com
 exit;
