@@ -6,8 +6,6 @@ jobs:
    build:
       docker:
          - image: jiteshsojitra/docker-headless-vnc-container
-      environment:
-         - HOME: /headless
       working_directory: ~/zm-selenium
       steps:
          - checkout
