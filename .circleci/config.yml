@@ -10,7 +10,7 @@ jobs:
       steps:
          - run:
               name: Install pre-requsites
-              command: ~/.circleci/prepare-box.sh
+              command: .circleci/prepare-box.sh
          - run:
                name: Checkout dependent repos
                command: .circleci/checkout-repo.sh
