@@ -13,13 +13,16 @@ jobs:
          - checkout
          - run:
               name: Checkout dependent repos
+              command: env
+         - run:
+              name: Checkout dependent repos
               command: bash .circleci/checkout-repos.sh
          - run:
-              name: Compile zm-mailbox/native
+              name: Compile zimbra native
               working_directory: ~/zm-mailbox/native
               command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$zimbra.version
          - run:
-              name: Compile zm-mailbox/common
+              name: Compile zimbra common
               working_directory: ~/zm-mailbox/common
               command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$zimbra.version
          - run:
