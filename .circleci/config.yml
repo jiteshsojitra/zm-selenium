@@ -6,9 +6,10 @@ jobs:
    build:
       docker:
          - image: ubuntu:16.04
-      working_directory: ~/zm-selenium
       steps:
          - checkout
+            working_directory: ~/checkout/zm-selenium
+            shell: /bin/bash -euo pipefail
          - run:
               name: Install pre-requsites
               command: .circleci/prepare-box.sh
