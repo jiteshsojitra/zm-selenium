@@ -9,10 +9,6 @@ jobs:
       environment:
          - zimbra.version: 8.8.0_GA
       working_directory: ~/zm-selenium
-      dependencies:
-            post:
-               - sudo apt-get install -y x11vnc
-               - x11vnc -forever -nopw: background: true
       steps:
          - checkout
          - run:
