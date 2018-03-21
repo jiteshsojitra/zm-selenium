@@ -35,6 +35,7 @@ echo "===> add webupd8 repository..."  && \
 	echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  && \
 	echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections  && \
 	DEBIAN_FRONTEND=noninteractive  apt-get install -y --force-yes oracle-java8-installer oracle-java8-set-default
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
 # Chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
