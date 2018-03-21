@@ -5,9 +5,10 @@ set -euxo pipefail
 # Environment variables
 export DEBIAN_FRONTEND=noninteractive
 
-
-export DISPLAY=":1"
-export DISPLAY="127.0.0.1:10.0"
+#startx
+sudo apt-get install xvfb
+Xvfb :0 -screen 0 1920x1080x24 +extension GLX -nolisten tcp -dpi 96
+export DISPLAY=:0
 xdg-open http://www.google.com
 exit;
 
