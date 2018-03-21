@@ -10,4 +10,4 @@ git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-ajax.git ~/zm
 git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-web-client.git ~/zm-web-client
 git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-zimlets.git ~/zm-zimlets
 
-xdg-open 'http://localhost:6901/?password=vncpassword'
+xdg-open http://localhost:6901/?password=vncpassword
