@@ -17,7 +17,7 @@ jobs:
          - run:
               name: Compile zm-mailbox
               working_directory: ~/zm-mailbox
-              command: ant publish-local-all -Duser.home=$HOME -Dzimbra.buildinfo.version=8.8.0_GA
+              command: ant publish-local-all -Ddev.home=$HOME -Dzimbra.buildinfo.version=8.8.0_GA
          - run:
               name: Run selenium tests
               working_directory: ~/zm-selenium

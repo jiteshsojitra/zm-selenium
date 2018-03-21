@@ -4,7 +4,6 @@ set -euxo pipefail
 
 # Environment variables
 export DEBIAN_FRONTEND=noninteractive
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 export GIT_BRANCH=develop
 
 git clone --depth=1 -b $GIT_BRANCH https://github.com/Zimbra/zm-mailbox.git ~/zm-mailbox
