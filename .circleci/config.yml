@@ -5,13 +5,13 @@ version: 2
 jobs:
    build:
       docker:
-         - image: ubuntu:16.04
+         - image: consol/ubuntu-xfce-vnc
       steps:
          - checkout:
               working_directory: ~/checkout/zm-selenium
          - run:
               name: Install pre-requisites
-              command: bash .circleci/prepare-box.sh
+              command: sudo apt-get update
          - run:
               name: Checkout dependent repos
               command: .circleci/checkout-repo.sh

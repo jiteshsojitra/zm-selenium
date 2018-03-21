@@ -13,8 +13,8 @@ export GIT_BRANCH=develop
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
 # Update the repository sources list
-sudo apt-get -qq -y autoremove
-sudo apt-get -qq -y update
+apt-get -qq -y autoremove
+apt-get -qq -y update
 
 # Install pre-requisites
 apt-get -qq install -y git
