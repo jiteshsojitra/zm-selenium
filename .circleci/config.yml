@@ -12,9 +12,6 @@ jobs:
       steps:
          - checkout
          - run:
-              name: Checkout dependent repos
-              command: bash .circleci/checkout-repos.sh
-         - run:
               name: Compile zm-mailbox
               working_directory: ~/zm-mailbox
               command: ant publish-local-all -Ddev.home=$HOME -Dzimbra.buildinfo.version=8.8.0_GA
