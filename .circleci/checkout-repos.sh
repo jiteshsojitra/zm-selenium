@@ -1,10 +1,6 @@
 #!/bin/bash
 
-set -x
-set -e
-set -o pipefail
-
-export DEBIAN_FRONTEND=noninteractive
+set -euxo pipefail
 
 git clone --depth=1 -b develop https://github.com/Zimbra/zm-mailbox.git ~/zm-mailbox
 git clone --depth=1 -b develop https://github.com/Zimbra/zm-ajax.git ~/zm-ajax

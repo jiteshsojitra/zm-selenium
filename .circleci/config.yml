@@ -17,12 +17,12 @@ jobs:
               command: bash .circleci/checkout-repo.sh
          - run:
               name: Compile zm-mailbox
-              working_directory: ~/zm-mailbox
-              command: ant publish-local-all -Dzimbra.buildinfo.version=8.8.0_GA
+              working_directory: /root/zm-mailbox
+              command: ant publish-local-all -Ddev.home=~ -Dzimbra.buildinfo.version=8.8.0_GA
          - run:
               name: Run selenium tests
               working_directory: ~/zm-selenium
-              command: ant Run-ExecuteHarnessMain -Dpattern startatt.tests.competitors -Dgroups always,L0
+              command: ant Run-ExecuteHarnessMain -Ddev.home=~ -Dpattern startatt.tests.competitors -Dgroups always,L0
 
 workflows:
    version: 2

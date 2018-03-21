@@ -1,9 +1,8 @@
 #!/bin/bash
 
-set -x
-set -euo pipefail
+set -euxo pipefail
 
-# Setup
+# Setup 
 mkdir -p ~/.zcs-deps
 mkdir -p ~/.ivy2/cache
 
