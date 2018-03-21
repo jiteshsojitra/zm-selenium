@@ -2,14 +2,9 @@
 
 set -euxo pipefail
 
-# Setup 
+# Setup
 mkdir -p ~/.zcs-deps
 mkdir -p ~/.ivy2/cache
-
-# Environment variables
-export DEBIAN_FRONTEND=noninteractive
-export GIT_BRANCH=develop
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
 # Update the repository sources list
 apt-get -qq -y autoremove
@@ -27,8 +22,8 @@ apt-get -qq install -y apt-utils \
 	git \
 	firefox \
 	xdg-utils \
-	fonts-liberation \
-	libappindicator1
+	libappindicator1 \
+	fonts-liberation
 
 # Java
 echo "===> add webupd8 repository..."  && \

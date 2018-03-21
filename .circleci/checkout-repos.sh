@@ -2,7 +2,12 @@
 
 set -euxo pipefail
 
-git clone --depth=1 -b develop https://github.com/Zimbra/zm-mailbox.git ~/zm-mailbox
-git clone --depth=1 -b develop https://github.com/Zimbra/zm-ajax.git ~/zm-ajax
-git clone --depth=1 -b develop https://github.com/Zimbra/zm-web-client.git ~/zm-web-client
-git clone --depth=1 -b develop https://github.com/Zimbra/zm-zimlets.git ~/zm-zimlets
+# Environment variables
+export DEBIAN_FRONTEND=noninteractive
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export GIT_BRANCH=develop
+
+git clone --depth=1 -b $GIT_BRANCH https://github.com/Zimbra/zm-mailbox.git ~/zm-mailbox
+git clone --depth=1 -b $GIT_BRANCH https://github.com/Zimbra/zm-ajax.git ~/zm-ajax
+git clone --depth=1 -b $GIT_BRANCH https://github.com/Zimbra/zm-web-client.git ~/zm-web-client
+git clone --depth=1 -b $GIT_BRANCH https://github.com/Zimbra/zm-zimlets.git ~/zm-zimlets

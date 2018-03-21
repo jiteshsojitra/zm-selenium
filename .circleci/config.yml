@@ -8,16 +8,16 @@ jobs:
          - image: jiteshsojitra/docker-headless-vnc-container
       steps:
          - checkout:
-              working_directory: ~/checkout/zm-selenium
+              working_directory: ~/zm-selenium
          - run:
-              name: Install pre-requisites
+              name: Install prerequisites
               command: bash .circleci/install-prerequisites.sh
          - run:
               name: Checkout dependent repos
               command: bash .circleci/checkout-repos.sh
          - run:
               name: Compile zm-mailbox
-              working_directory: /root/zm-mailbox
+              working_directory: ~/zm-mailbox
               command: ant publish-local-all -Ddev.home=~ -Dzimbra.buildinfo.version=8.8.0_GA
          - run:
               name: Run selenium tests
