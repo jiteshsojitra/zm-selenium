@@ -11,10 +11,10 @@ jobs:
               working_directory: ~/checkout/zm-selenium
          - run:
               name: Install pre-requisites
-              command: bash .circleci/prepare-box.sh
+              command: bash .circleci/install-prerequisites.sh
          - run:
               name: Checkout dependent repos
-              command: bash .circleci/checkout-repo.sh
+              command: bash .circleci/checkout-repos.sh
          - run:
               name: Compile zm-mailbox
               working_directory: /root/zm-mailbox
