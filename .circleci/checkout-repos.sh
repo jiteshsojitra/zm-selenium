@@ -6,14 +6,13 @@ set -euxo pipefail
 export DEBIAN_FRONTEND=noninteractive
 
 #startx
-xhost +
 apt-get install xvfb
 Xvfb :0 -screen 0 1920x1080x24 +extension GLX -nolisten tcp -dpi 96
 export DISPLAY=:0
 xdg-open http://www.google.com
 exit;
 
-#xdg-open http://localhost:6901/?password=vncpassword
+#xdg-open http://127.0.0.1:6901/?password=vncpassword
 
 git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-mailbox.git ~/zm-mailbox
 git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-ajax.git ~/zm-ajax
