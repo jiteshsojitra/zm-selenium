@@ -18,7 +18,6 @@ apt-get -qq -y update
 
 # Install pre-requisites
 apt-get -qq install -y apt-utils \
-	xdg-utils \
 	software-properties-common \
 	build-essential \
 	vim \
@@ -28,6 +27,7 @@ apt-get -qq install -y apt-utils \
 	iputils-ping \
 	git \
 	firefox \
+	xdg-utils \
 	fonts-liberation \
 	libappindicator1
 
