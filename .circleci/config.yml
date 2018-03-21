@@ -10,7 +10,7 @@ jobs:
          - HOME: /headless
       steps:
          - checkout:
-              working_directory: ~/zm-selenium
+              working_directory: ~
          - run:
               name: Install prerequisites
               command: bash .circleci/install-prerequisites.sh
