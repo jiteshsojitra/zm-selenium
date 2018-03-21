@@ -6,7 +6,7 @@ jobs:
    build:
       docker:
          - image: consol/ubuntu-xfce-vnc
-         working_directory: /zm-selenium
+      working_directory: ~/zm-selenium
       steps:
          - run:
               name: Install pre-requsites
