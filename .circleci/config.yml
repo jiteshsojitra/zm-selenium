@@ -8,21 +8,21 @@ jobs:
          - image: ubuntu:16.04
       steps:
          - checkout:
-            working_directory: ~/checkout/zm-selenium
+              working_directory: ~/checkout/zm-selenium
          - run:
               name: Install pre-requisites
-              command: bash .circleci/prepare-box.sh
+              command: sudo apt-get update ; bash .circleci/prepare-box.sh
          - run:
-               name: Checkout dependent repos
-               command: .circleci/checkout-repo.sh
+              name: Checkout dependent repos
+              command: .circleci/checkout-repo.sh
          - run:
-               name: Compile zm-mailbox
-               working_directory: ~/zm-mailbox
-               command: ant publish-local-all -Dzimbra.buildinfo.version=8.8.0_GA
+              name: Compile zm-mailbox
+              working_directory: ~/zm-mailbox
+              command: ant publish-local-all -Dzimbra.buildinfo.version=8.8.0_GA
          - run:
-               name: Run selenium tests
-               working_directory: ~/zm-selenium
-               command: ant Run-ExecuteHarnessMain -Dpattern startatt.tests.competitors -Dgroups always,L0
+              name: Run selenium tests
+              working_directory: ~/zm-selenium
+              command: ant Run-ExecuteHarnessMain -Dpattern startatt.tests.competitors -Dgroups always,L0
 
 workflows:
    version: 2
