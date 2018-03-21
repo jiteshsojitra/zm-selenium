@@ -10,10 +10,7 @@ jobs:
          - HOME: /headless
       working_directory: ~/zm-selenium
       steps:
-         - checkout              
-         - run:
-              name: Install prerequisites
-              command: bash .circleci/install-prerequisites.sh
+         - checkout
          - run:
               name: Checkout dependent repos
               command: bash .circleci/checkout-repos.sh
