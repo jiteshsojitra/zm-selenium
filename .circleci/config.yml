@@ -18,11 +18,11 @@ jobs:
          - run:
               name: Compile zimbra native
               working_directory: ~/zm-mailbox/native
-              command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$zimbra.version
+              command: ant publish-local -Ddev.home=$HOME
          - run:
               name: Compile zimbra common
               working_directory: ~/zm-mailbox/common
-              command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$zimbra.version
+              command: ant publish-local -Ddev.home=$HOME
          - run:
               name: Run selenium tests
               working_directory: ~/zm-selenium
@@ -30,7 +30,7 @@ jobs:
          - store_artifacts:
               path: ~/zm-selenium/test-output
          - store_test_results:
-              path: ~/zm-selenium/test-output
+              path: ~/zm-selenium/test-output/*/*/*/TestNG/index.html
 
 workflows:
    version: 2
