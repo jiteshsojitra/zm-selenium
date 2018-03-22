@@ -2,11 +2,7 @@
 
 set -euxo pipefail
 
-# Environment variables
-export DEBIAN_FRONTEND=noninteractive
-
-echo $DISPLAY
-firefox
+firefox &
 #startx
 xdg-open https://www.google.com
 #xdg-open http://127.0.0.1:6901/?password=vncpassword
