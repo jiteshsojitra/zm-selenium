@@ -5,7 +5,10 @@ set -euxo pipefail
 # Environment variables
 export DEBIAN_FRONTEND=noninteractive
 
-DISPLAY=:0.1 firefox
+apt-get update
+apt-get install xvfb
+Xvfb :1 -screen 0 1024x768x16 &> xvfb.log  &
+ps aux | grep X
 
 #startx
 xdg-open http://127.0.0.1:6901/?password=vncpassword
