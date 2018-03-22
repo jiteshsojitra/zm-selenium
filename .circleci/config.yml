@@ -30,7 +30,7 @@ jobs:
          - store_artifacts:
               path: ~/zm-selenium/test-output
          - store_test_results:
-              path: ~/zm-selenium/test-output/*/*/*/TestNG/index.html
+              path: ~/zm-selenium/test-output
 
 workflows:
    version: 2
