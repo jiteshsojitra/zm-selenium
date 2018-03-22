@@ -7,7 +7,6 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt-get update
 apt-get install xvfb
-Xvfb :1 -screen 0 1024x768x16 &> xvfb.log  &
 
 #startx
 xdg-open https://www.google.com
