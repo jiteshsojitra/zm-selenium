@@ -5,6 +5,8 @@ set -euxo pipefail
 # Environment variables
 export DEBIAN_FRONTEND=noninteractive
 
+DISPLAY=:0.1 firefox
+
 #startx
 xdg-open http://127.0.0.1:6901/?password=vncpassword
 exit;
