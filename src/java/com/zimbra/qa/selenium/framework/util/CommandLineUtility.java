@@ -61,7 +61,7 @@ class StreamGobbler extends Thread {
 
 public class CommandLineUtility {
 	private static Logger logger = LogManager.getLogger(CommandLineUtility.class);
-	public static String privateKey = System.getProperty("user.home") + "/.ssh/id_rsa";
+	public static String privateKey = "/home/" + ConfigProperties.getStringProperty("server.user") + "/.ssh/id_rsa";
 
 	/**
 	 * Execute Command line with no STDIN parameter and return the execution status
@@ -234,11 +234,11 @@ public class CommandLineUtility {
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			JSch jsch = new JSch();
-			
+
 			if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
 				jsch.addIdentity(privateKey);
 			}
-			
+
 			Session session = jsch.getSession(ConfigProperties.getStringProperty("server.user"), host, 22);
 			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
 				session.setPassword(ConfigProperties.getStringProperty("server.password"));
@@ -285,16 +285,16 @@ public class CommandLineUtility {
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			JSch jsch = new JSch();
-			
+
 			if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
 				jsch.addIdentity(privateKey);
 			}
-			
+
 			Session session = jsch.getSession(ConfigProperties.getStringProperty("server.user"), host, 22);
 			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
 				session.setPassword(ConfigProperties.getStringProperty("server.password"));
 			}
-			
+
 			session.setConfig(config);
 			session.connect();
 			System.out.println("Connected");
