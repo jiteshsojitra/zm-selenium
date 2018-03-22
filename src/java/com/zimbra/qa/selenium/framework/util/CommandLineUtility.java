@@ -61,7 +61,7 @@ class StreamGobbler extends Thread {
 
 public class CommandLineUtility {
 	private static Logger logger = LogManager.getLogger(CommandLineUtility.class);
-	public static String privateKey = "/home/" + ConfigProperties.getStringProperty("server.user") + "/.ssh/id_rsa";
+	public static String privateKey = "/.ssh/id_rsa";
 
 	/**
 	 * Execute Command line with no STDIN parameter and return the execution status
