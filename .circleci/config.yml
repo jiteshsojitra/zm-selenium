@@ -28,6 +28,8 @@ jobs:
               command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern startatt.tests.competitors -Dgroups always,L0
          - store_artifacts:
               path: ~/zm-selenium/test-output
+         - store_test_results:
+              path: ~/zm-selenium/test-output
 
 workflows:
    version: 2
