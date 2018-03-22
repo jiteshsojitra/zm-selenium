@@ -256,7 +256,6 @@ public class ClientSession {
 				options.setExperimentalOption("prefs", preferences);
 				options.addArguments("disable-infobars");
 				options.addArguments("start-maximized");
-				options.addArguments("--no-sandbox");
 
 		        System.setProperty("webdriver.chrome.driver", driverFilePath);
 		        options.setCapability("chrome.switches", Arrays.asList("--disable-extensions"));

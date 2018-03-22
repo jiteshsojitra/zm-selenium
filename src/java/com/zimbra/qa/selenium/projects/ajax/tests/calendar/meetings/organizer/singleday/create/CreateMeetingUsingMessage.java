@@ -16,12 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.util.Calendar;
-import javax.mail.MessagingException;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -31,7 +27,6 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Field;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogAddAttendees;
-import com.zimbra.qa.selenium.framework.util.EmailImpl;
 
 public class CreateMeetingUsingMessage extends AjaxCore {
 
@@ -42,9 +37,17 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 
 
 	@Test (description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=TRUE",
-			groups = { "smoke", "L11" })
+			groups = { "smoke", "L1" })
 
 	public void CreateMeetingUsingMessage_01() throws HarnessException {
+
+		app.zPageMain.zLogout();
+		ZimbraAccount.AccountZCS().soapSend(
+				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
+			+		"<pref name='zimbraPrefComposeFormat'>"+ "text" +"</pref>"
+			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "TRUE" +"</pref>"
+			+	"</ModifyPrefsRequest>");
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly1.txt";
 		final String subject = "1 html mail";
@@ -54,29 +57,8 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
-		
-		File mime = new File(mimeFile);
-		EmailImpl smtp = new EmailImpl(ConfigProperties.getStringProperty("server.host"), 25, app.zGetActiveAccount().EmailAddress, "test123", false, false, false);
-		
-		ByteArrayOutputStream baos = null;
-		final int FileSizeLimit = 10000; // bytes
-		
-		// Only log messages that are smaller than FileSizeLimit bytes
-		if ( mime.length() < FileSizeLimit) {
-			baos = new ByteArrayOutputStream();
-			PrintStream ps = new PrintStream(baos);
-			smtp.setDebugStream(ps);
-		}
-		
-		String[] emails = app.zGetActiveAccount().EmailAddress.split(",");
-		
-		try {
-			smtp.sendMessage(mimeFile, emails, app.zGetActiveAccount().EmailAddress);
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}			
+
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Verify mail exists
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

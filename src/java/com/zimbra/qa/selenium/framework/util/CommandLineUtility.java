@@ -61,7 +61,7 @@ class StreamGobbler extends Thread {
 
 public class CommandLineUtility {
 	private static Logger logger = LogManager.getLogger(CommandLineUtility.class);
-	public static String privateKey = "/home/" + ConfigProperties.getStringProperty("server.username") + "/.ssh/id_rsa";
+	public static String privateKey = System.getProperty("user.home") + "/.ssh/id_rsa";
 
 	/**
 	 * Execute Command line with no STDIN parameter and return the execution status
@@ -239,7 +239,7 @@ public class CommandLineUtility {
 				jsch.addIdentity(privateKey);
 			}
 			
-			Session session = jsch.getSession(ConfigProperties.getStringProperty("server.username"), host, 22);
+			Session session = jsch.getSession(ConfigProperties.getStringProperty("server.user"), host, 22);
 			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
 				session.setPassword(ConfigProperties.getStringProperty("server.password"));
 			}
@@ -290,7 +290,7 @@ public class CommandLineUtility {
 				jsch.addIdentity(privateKey);
 			}
 			
-			Session session = jsch.getSession(ConfigProperties.getStringProperty("server.username"), host, 22);
+			Session session = jsch.getSession(ConfigProperties.getStringProperty("server.user"), host, 22);
 			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
 				session.setPassword(ConfigProperties.getStringProperty("server.password"));
 			}

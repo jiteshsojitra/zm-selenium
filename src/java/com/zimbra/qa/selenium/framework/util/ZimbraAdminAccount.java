@@ -251,7 +251,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	public static synchronized ZimbraAdminAccount AdminConsoleAdmin() {
 		if (_AdminConsoleAdmin == null) {
 			try {
-				String name = ConfigProperties.getStringProperty("adminUsername") + ConfigProperties.getUniqueString();
+				String name = ConfigProperties.getStringProperty("adminUser") + ConfigProperties.getUniqueString();
 				String domain = ExecuteHarnessMain.proxyServers.get(0);
 				_AdminConsoleAdmin = new ZimbraAdminAccount(name + "@" + domain);
 				_AdminConsoleAdmin.provision();
@@ -284,13 +284,13 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 	/**
 	 * Get the global admin account This account is defined in config.properties as
-	 * <adminUsername>@<server>
+	 * <adminUser>@<server>
 	 * 
 	 * @return The global admin account
 	 */
 	public static synchronized ZimbraAdminAccount GlobalAdmin() {
 		if (_GlobalAdmin == null) {
-			String name = ConfigProperties.getStringProperty("adminUsername") + "@"
+			String name = ConfigProperties.getStringProperty("adminUser") + "@"
 					+ ExecuteHarnessMain.proxyServers.get(0);
 			_GlobalAdmin = new ZimbraAdminAccount(name);
 			_GlobalAdmin.authenticate();
