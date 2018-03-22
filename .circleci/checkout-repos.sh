@@ -7,11 +7,11 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt-get update
 apt-get install xvfb
+xhost +
+export DISPLAY=:0.0
 Xvfb :1 -screen 0 1024x768x16 &> xvfb.log  &
-ps aux | grep X
 
 #startx
-firefox
 xdg-open https://www.google.com
 #xdg-open http://127.0.0.1:6901/?password=vncpassword
 
