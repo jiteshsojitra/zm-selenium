@@ -8,7 +8,7 @@ jobs:
          - image: jiteshsojitra/docker-headless-vnc-container
            entrypoint: /dockerstartup/vnc_startup.sh
       environment:
-         - zimbra.buildinfo.version:8.8.8_GA
+         - zimbra.buildinfo.version=8.8.8_GA
       working_directory: ~/zm-selenium
       steps:
          - checkout
