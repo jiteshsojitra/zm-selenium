@@ -8,8 +8,7 @@ jobs:
          - image: jiteshsojitra/docker-headless-vnc-container
            entrypoint: /dockerstartup/vnc_startup.sh
       environment:
-         - zimbra.version: 8.8.0_GA
-	 - zimbra.buildinfo.version:8.8.8_GA
+         - zimbra.buildinfo.version:8.8.8_GA
       working_directory: ~/zm-selenium
       steps:
          - checkout
@@ -19,11 +18,11 @@ jobs:
          - run:
               name: Compile zimbra native
               working_directory: ~/zm-mailbox/native
-              command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$zimbra.version
+              command: ant publish-local -Ddev.home=$HOME
          - run:
               name: Compile zimbra common
               working_directory: ~/zm-mailbox/common
-              command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$zimbra.version
+              command: ant publish-local -Ddev.home=$HOME
          - run:
               name: Run selenium tests
               working_directory: ~/zm-selenium
