@@ -59,10 +59,12 @@ class StreamGobbler extends Thread {
 	}
 }
 
+
+// Command line utility class
+
 public class CommandLineUtility {
 	private static Logger logger = LogManager.getLogger(CommandLineUtility.class);
-	public static String privateKey = "~/.ssh/id_rsa";
-
+	
 	/**
 	 * Execute Command line with no STDIN parameter and return the execution status
 	 *
@@ -225,10 +227,14 @@ public class CommandLineUtility {
 		return output;
 	}
 
+	
 	public static String runCommandOnStoreServerToGetTOTP(String email, String secret) {
+		
+		String privateKey = null;
 		String host = ZimbraAccount.AccountZCS().zGetAccountStoreHost();
 		String command = "sudo su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
 		String totp = "0";
+		
 		try {
 
 			java.util.Properties config = new java.util.Properties();
@@ -236,6 +242,7 @@ public class CommandLineUtility {
 			JSch jsch = new JSch();
 
 			if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+				privateKey = getUserHome() + "/.ssh/id_rsa";
 				jsch.addIdentity(privateKey);
 			}
 
@@ -278,8 +285,11 @@ public class CommandLineUtility {
 	}
 
 	public static ArrayList<String> runCommandOnZimbraServer(String host, String zimbraCommand) {
+		
+		String privateKey = null;
 		String command = "sudo su - zimbra -c '" + zimbraCommand + "'";
 		ArrayList<String> out = null;
+		
 		try {
 
 			java.util.Properties config = new java.util.Properties();
@@ -287,6 +297,7 @@ public class CommandLineUtility {
 			JSch jsch = new JSch();
 
 			if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+				privateKey = getUserHome() + "/.ssh/id_rsa";
 				jsch.addIdentity(privateKey);
 			}
 
@@ -323,5 +334,14 @@ public class CommandLineUtility {
 		}
 
 		return (out);
+	}
+	
+	public static String getUserHome () {
+		String userHome = null;
+		userHome = System.getenv("HOME");
+		if (userHome == null || userHome == "") {
+			userHome = System.getProperty("user.home");
+		}
+		return userHome;
 	}
 }
