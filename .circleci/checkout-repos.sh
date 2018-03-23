@@ -8,5 +8,5 @@ git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-ajax.git ~/zm
 git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-web-client.git ~/zm-web-client
 git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-zimlets.git ~/zm-zimlets
 
-# Additional config
+# Additional configuration
 cat ~/.ssh/id_rsa_* > ~/.ssh/id_rsa
