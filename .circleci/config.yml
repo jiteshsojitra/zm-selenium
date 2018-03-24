@@ -29,7 +29,7 @@ jobs:
          - run:
               name: Run selenium tests
               working_directory: ~/zm-selenium
-              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern projects.ajax.tests.calendar -Dgroups always,L0
+              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern projects.ajax.tests.calendar -Dgroups always,sanity
          - store_artifacts:
               path: ~/zm-selenium/test-output
          - store_test_results:
