@@ -25,7 +25,7 @@ jobs:
               name: Compile zimbra common
               working_directory: ~/zm-mailbox/common
               command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$zimbra_version
-   run:
+   execute:
       docker:
          - image: jiteshsojitra/docker-headless-vnc-container
       steps:
@@ -45,12 +45,12 @@ workflows:
    SeleniumCI:
       jobs:
          - build
-         - run:
+         - execute:
               requires:
                  - build
          - review:
               type: approval
               requires:
-                 - run
+                 - execute
 
 ############################################################################
