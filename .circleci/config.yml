@@ -3,13 +3,17 @@ version: 2
 ############################################################################
 
 jobs:
+
    Execute:
       docker:
          - image: jiteshsojitra/docker-headless-vnc-container
            entrypoint: /dockerstartup/vnc_startup.sh
       environment:
-         - zimbra_version: 8.8.0_GA
-         - JAVA_OPTS: -Xms512m -Xmx1024m
+         - ZIMBRA_VERSION: 8.8.0_GA
+         - SELENIUM_GROUPS: always,L0
+         - SELENIUM_PATTERN: projects.ajax.tests
+         - SELENIUM_OUTPUT: ~/zm-selenium/test-output
+
       working_directory: ~/zm-selenium
       steps:
          - checkout
@@ -21,19 +25,19 @@ jobs:
          - run:
               name: Compile zimbra native
               working_directory: ~/zm-mailbox/native
-              command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$zimbra_version
+              command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$ZIMBRA_VERSION
          - run:
               name: Compile zimbra common
               working_directory: ~/zm-mailbox/common
-              command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$zimbra_version
+              command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$ZIMBRA_VERSION
          - run:
               name: Execute selenium tests
               working_directory: ~/zm-selenium
-              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern projects.ajax.tests -Dgroups always,L0
+              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern $SELENIUM_PATTERN -Dgroups $SELENIUM_GROUPS
          - store_artifacts:
-              path: ~/zm-selenium/test-output
+              path: $SELENIUM_OUTPUT
          - store_test_results:
-              path: ~/zm-selenium/test-output
+              path: $SELENIUM_OUTPUT
 
 ##############################
 
