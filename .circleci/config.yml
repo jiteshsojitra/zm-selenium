@@ -1,9 +1,9 @@
-version: 2
+version: 3
 
 ############################################################################
 
 jobs:
-   selenium:
+   build:
       docker:
          - image: jiteshsojitra/docker-headless-vnc-container
            entrypoint: /dockerstartup/vnc_startup.sh
@@ -13,8 +13,7 @@ jobs:
       steps:
          - checkout
          - add_ssh_keys:
-              fingerprints:
-              - 47:28:e4:00:8e:67:f5:3e:42:c0:85:2c:84:8f:d1:3e
+              fingerprints: 47:28:e4:00:8e:67:f5:3e:42:c0:85:2c:84:8f:d1:3e
          - run:
               name: Checkout dependent repos
               command: bash .circleci/checkout-repos.sh
@@ -26,6 +25,9 @@ jobs:
               name: Compile zimbra common
               working_directory: ~/zm-mailbox/common
               command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$zimbra_version
+
+   run:
+      steps:
          - run:
               name: Run selenium tests
               working_directory: ~/zm-selenium
@@ -39,6 +41,16 @@ workflows:
    version: 2
    SeleniumCI:
       jobs:
-         - selenium
+         - build
+         - run
+              requires:
+                 - build
+         - review:
+              type: approval
+              requires:
+                 - run
+         - deploy:
+              requires:
+                 - review
 
 ############################################################################
