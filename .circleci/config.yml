@@ -1,4 +1,4 @@
-version: 3
+version: 3.3
 
 ############################################################################
 
@@ -28,7 +28,7 @@ jobs:
    run:
       docker:
          - image: jiteshsojitra/docker-headless-vnc-container
-           entrypoint: /dockerstartup/vnc_startup.sh
+      steps:
          - run:
               name: Run selenium tests
               working_directory: ~/zm-selenium
