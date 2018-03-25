@@ -3,7 +3,7 @@
 set -euxo pipefail
 
 # Configuration
-seleniumConfigFile="~/zm-selenium/conf/config.properties"
+seleniumConfigFile="$HOME/zm-selenium/conf/config.properties"
 
 # Update server
 echo -e "Updating server host in config.properties file"
