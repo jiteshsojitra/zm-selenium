@@ -10,7 +10,7 @@ jobs:
            entrypoint: /dockerstartup/vnc_startup.sh
       environment:
          - ZIMBRA_VERSION: 8.8.0_GA
-         - SELENIUM_GROUPS: always,L0
+         - SELENIUM_GROUPS: always,sanity
          - SELENIUM_PATTERN: projects.ajax.tests
          - SELENIUM_OUTPUT: ~/zm-selenium/test-output
 
