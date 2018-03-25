@@ -25,17 +25,23 @@ jobs:
               name: Compile zimbra common
               working_directory: ~/zm-mailbox/common
               command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$zimbra_version
+   run:
+      docker:
+         - image: jiteshsojitra/docker-headless-vnc-container
+           entrypoint: /dockerstartup/vnc_startup.sh
          - run:
               name: Run selenium tests
               working_directory: ~/zm-selenium
-              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern projects.ajax.tests.calendar.meetings.organizer.singleday.create.CreateMeetingUsingMessage -Dgroups always,L1,L2
+              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern projects.ajax.tests.mail.folders -Dgroups always,L0
          - store_artifacts:
               path: ~/zm-selenium/test-output
          - store_test_results:
               path: ~/zm-selenium/test-output
 
+++++++++++++++++++++++++++++++
+
 workflows:
-   version: 2
+   version: 3
    SeleniumCI:
       jobs:
          - build
@@ -46,8 +52,5 @@ workflows:
               type: approval
               requires:
                  - run
-         - deploy:
-              requires:
-                 - review
 
 ############################################################################
