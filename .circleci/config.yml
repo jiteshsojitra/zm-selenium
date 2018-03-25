@@ -12,7 +12,7 @@ jobs:
          - ZIMBRA_VERSION: 8.8.0_GA
          - SELENIUM_BROWSER: chrome
          - SELENIUM_SERVER_HOST: zqa-206.eng.zimbra.com
-	 - SELENIUM_GROUPS: always,sanity
+         - SELENIUM_GROUPS: always,sanity
          - SELENIUM_PATTERN: projects.ajax.tests
          - SELENIUM_OUTPUT: ~/zm-selenium/test-output
 
@@ -23,7 +23,7 @@ jobs:
               fingerprints: 47:28:e4:00:8e:67:f5:3e:42:c0:85:2c:84:8f:d1:3e
          - run:
               name: Checkout dependent repos
-              command: bash .circleci/checkout-repos.sh
+              command: bash -x .circleci/checkout-repos.sh
          - run:
               name: Compile zimbra native
               working_directory: ~/zm-mailbox/native
@@ -34,7 +34,7 @@ jobs:
               command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$ZIMBRA_VERSION
          - run:
               name: Configure selenium
-              command: bash .circleci/configurations.sh
+              command: bash -x .circleci/configurations.sh
          - run:
               name: Execute selenium tests
               working_directory: ~/zm-selenium
