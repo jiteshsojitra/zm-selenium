@@ -42,7 +42,7 @@ workflows:
    SeleniumCI:
       jobs:
          - build
-         - run
+         - run:
               requires:
                  - build
          - review:
