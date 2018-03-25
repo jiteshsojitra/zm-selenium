@@ -29,10 +29,6 @@ jobs:
               name: Execute selenium tests
               working_directory: ~/zm-selenium
               command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern projects.ajax.tests.mail.folders -Dgroups always,L0
-         - persist_to_workspace:
-              root: ~/zm-selenium/test-output
-              paths:
-                 - ~/zm-selenium/workspace
          - store_artifacts:
               path: ~/zm-selenium/test-output
          - store_test_results:
