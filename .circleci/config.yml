@@ -26,13 +26,23 @@ jobs:
               working_directory: ~/zm-mailbox/common
               command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$zimbra_version
          - run:
-              name: Run selenium tests
+              name: Execute selenium tests
               working_directory: ~/zm-selenium
               command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern projects.ajax.tests.mail.folders -Dgroups always,L0
+         - persist_to_workspace:
+              root: ~/zm-selenium/test-output
+              paths:
+                 - ~/zm-selenium/workspace
          - store_artifacts:
               path: ~/zm-selenium/test-output
          - store_test_results:
               path: ~/zm-selenium/test-output
+
+   execute:
+      working_directory: ~/zm-selenium
+      steps:
+         - attach_workspace:
+              at: ~/zm-selenium/workspace
 
 ##############################
 
@@ -44,9 +54,5 @@ workflows:
          - execute:
               requires:
                  - build
-         - review:
-              type: approval
-              requires:
-                 - execute
 
 ############################################################################
