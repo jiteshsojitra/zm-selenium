@@ -10,7 +10,9 @@ jobs:
            entrypoint: /dockerstartup/vnc_startup.sh
       environment:
          - ZIMBRA_VERSION: 8.8.0_GA
-         - SELENIUM_GROUPS: always,sanity
+         - SELENIUM_BROWSER: chrome
+         - SELENIUM_SERVER_HOST: zqa-206.eng.zimbra.com
+	 - SELENIUM_GROUPS: always,sanity
          - SELENIUM_PATTERN: projects.ajax.tests
          - SELENIUM_OUTPUT: ~/zm-selenium/test-output
 
@@ -31,9 +33,12 @@ jobs:
               working_directory: ~/zm-mailbox/common
               command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$ZIMBRA_VERSION
          - run:
+              name: Configure selenium
+              command: bash .circleci/configurations.sh
+         - run:
               name: Execute selenium tests
               working_directory: ~/zm-selenium
-              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern $SELENIUM_PATTERN -Dgroups $SELENIUM_GROUPS
+              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern=$SELENIUM_PATTERN -Dgroups=$SELENIUM_GROUPS
          - store_artifacts:
               path: $SELENIUM_OUTPUT
          - store_test_results:
