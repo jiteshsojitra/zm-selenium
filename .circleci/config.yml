@@ -3,7 +3,7 @@ version: 3
 ############################################################################
 
 jobs:
-   build:
+   Execute:
       docker:
          - image: jiteshsojitra/docker-headless-vnc-container
            entrypoint: /dockerstartup/vnc_startup.sh
@@ -41,6 +41,6 @@ workflows:
    version: 3
    SeleniumCI:
       jobs:
-         - build
+         - Execute
 
 ############################################################################
