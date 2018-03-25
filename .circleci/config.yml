@@ -1,4 +1,4 @@
-version: 2
+version: 3
 
 ############################################################################
 
@@ -9,6 +9,7 @@ jobs:
            entrypoint: /dockerstartup/vnc_startup.sh
       environment:
          - zimbra_version: 8.8.0_GA
+         - JAVA_OPTS: -Xms512m -Xmx1024m
       working_directory: ~/zm-selenium
       steps:
          - checkout
@@ -28,7 +29,7 @@ jobs:
          - run:
               name: Execute selenium tests
               working_directory: ~/zm-selenium
-              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern projects.ajax.tests.mail -Dgroups always,L0
+              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern projects.ajax.tests -Dgroups always,L0
          - store_artifacts:
               path: ~/zm-selenium/test-output
          - store_test_results:
@@ -37,7 +38,7 @@ jobs:
 ##############################
 
 workflows:
-   version: 2
+   version: 3
    SeleniumCI:
       jobs:
          - build
