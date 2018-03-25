@@ -38,12 +38,6 @@ jobs:
          - store_test_results:
               path: ~/zm-selenium/test-output
 
-   execute:
-      working_directory: ~/zm-selenium
-      steps:
-         - attach_workspace:
-              at: ~/zm-selenium/workspace
-
 ##############################
 
 workflows:
@@ -51,8 +45,5 @@ workflows:
    SeleniumCI:
       jobs:
          - build
-         - execute:
-              requires:
-                 - build
 
 ############################################################################
