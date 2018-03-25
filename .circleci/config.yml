@@ -9,7 +9,7 @@ jobs:
            entrypoint: /dockerstartup/vnc_startup.sh
       environment:
          - zimbra_version: 8.8.0_GA
-         - JAVA_OPTS: -Xms512m -Xmx1024m
+         - JAVA_OPTS: "-Xms512m -Xmx1024m"
       working_directory: ~/zm-selenium
       steps:
          - checkout
