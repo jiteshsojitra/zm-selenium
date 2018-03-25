@@ -38,7 +38,7 @@ jobs:
          - store_test_results:
               path: ~/zm-selenium/test-output
 
-++++++++++++++++++++++++++++++
+##############################
 
 workflows:
    version: 3
