@@ -32,18 +32,20 @@ jobs:
               working_directory: ~/zm-mailbox/common
               command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$ZIMBRA_VERSION
          - run:
-              name: Configure selenium
+              name: Configure selenium suite
               command: bash -x .circleci/pre-configurations.sh
          - run:
               name: Execute selenium tests
               working_directory: ~/zm-selenium
               command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern=$SELENIUM_PATTERN -Dgroups=$SELENIUM_GROUPS
          - run:
-              name: Configure selenium output
+              name: Selenium test output
               command: bash -x .circleci/post-configurations.sh
          - store_artifacts:
+              name: Store artifacts
               path: ~/zm-selenium/test-output
          - store_test_results:
+              name: Store rest results
               path: ~/zm-selenium/test-output
 
 ##############################
