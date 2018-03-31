@@ -13,7 +13,7 @@ jobs:
          - SELENIUM_BROWSER: chrome
          - SELENIUM_SERVER_HOST: ec2-35-154-223-151.ap-south-1.compute.amazonaws.com
          - SELENIUM_GROUPS: always,L0
-         - SELENIUM_PATTERN: projects.ajax.tests.mail.folders
+         - SELENIUM_PATTERN: projects.ajax.tests.mail
          - SELENIUM_OUTPUT: ~/zm-selenium/test-output
 
       working_directory: ~/zm-selenium
