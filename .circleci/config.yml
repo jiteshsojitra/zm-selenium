@@ -14,7 +14,7 @@ jobs:
          - SELENIUM_SERVER_HOST: ec2-35-154-223-151.ap-south-1.compute.amazonaws.com
          - SELENIUM_GROUPS: always,L0
          - SELENIUM_PATTERN: projects.ajax.tests.mail.folders
-         - SELENIUM_OUTPUT: $HOME/zm-selenium/test-output
+         - SELENIUM_OUTPUT: ~/zm-selenium/test-output
 
       working_directory: ~/zm-selenium
       steps:
@@ -40,8 +40,10 @@ jobs:
               working_directory: ~/zm-selenium
               command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern=$SELENIUM_PATTERN -Dgroups=$SELENIUM_GROUPS
          - store_artifacts:
+              working_directory: ~/zm-selenium/test-output
               path: $SELENIUM_OUTPUT
          - store_test_results:
+              working_directory: ~/zm-selenium/test-output
               path: $SELENIUM_OUTPUT
 
 ##############################
