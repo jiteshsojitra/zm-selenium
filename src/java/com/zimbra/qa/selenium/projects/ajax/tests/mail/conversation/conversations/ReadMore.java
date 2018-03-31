@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversations;
 
-import java.io.*;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -37,7 +36,10 @@ public class ReadMore extends SetGroupMailByConversationPreference {
 		final String subject = "ReadMore13674340693103";
 		final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email11";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
+		// Inject sample mimes
+		for (int i=0; i<=6; i++) {
+			injectMessage(app.zGetActiveAccount(), mimeFolder + "/mime0" + i + ".txt");
+		}
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -47,6 +49,8 @@ public class ReadMore extends SetGroupMailByConversationPreference {
 
 		// Click on the "Read More" button
 		app.zPageMail.zToolbarPressButton(Button.B_READMORE);
+
+		//-- VERIFICATION
 
 		// TODO: not sure how to verify that the scrollbar has moved?
 	}

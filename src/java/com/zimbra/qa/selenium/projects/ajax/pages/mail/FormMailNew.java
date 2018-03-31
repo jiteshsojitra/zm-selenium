@@ -75,7 +75,9 @@ public class FormMailNew extends AbsForm {
 		public static final String zUsePrefixForward = "css=div[id$='_FORWARD_ATT__USE_PREFIX'] td[id$='_FORWARD_ATT__USE_PREFIX_title']";
 		public static final String zIncludeHeadersReply = "css=div[id$='_REPLY__INCLUDE_HEADERS'] td[id$='_REPLY__INCLUDE_HEADERS_title']";
 		public static final String zIncludeHeadersForward = "css=div[id$='_FORWARD_ATT__INCLUDE_HEADERS'] td[id$='_FORWARD_ATT__INCLUDE_HEADERS_title']";
-
+		public static final String zPrefixInHeaderReplyCompose = "css=div[data-marker='__HEADERS__'] blockquote[style*='border-left:2px solid #1010FF;']";
+		public static final String zPrefixInQuotedTextReplyCompose = "css=div[data-marker='__QUOTED_TEXT__'] blockquote[style*='border-left:2px solid #1010FF;']";
+		
 		public static final String zToField = "css=input[id^='zv__COMPOSE'][id$='_to_control']";
 		public static final String zToField_Edge = "css=textarea[id^='zv__COMPOSE'][id$='_to_control']";
 		public static final String zCcField = "css=input[id^=zv__COMPOSE][id$=_cc_control]";
@@ -101,7 +103,8 @@ public class FormMailNew extends AbsForm {
 		public static final String zBubbleToField = "css=[id^=zv__COMPOSE][id$=_to_cell]";
 		public static final String zBubbleCcField = "css=[id^=zv__COMPOSE][id$=_cc_cell]";
 		public static final String zBubbleBccField = "css=[id^=zv__COMPOSE][id$=_bcc_cell]";
-		public static final String CcField = "css= td[id='zv__COMPOSE-1_cc_cell']  div[class='addrBubbleContainer']";
+		public static final String CcField = "css= td[id='zv__COMPOSE-1_cc_cell'] div[class='addrBubbleContainer']";
+		public static final String ToField = "css= td[id='zv__COMPOSE-1_to_cell'] div[class='addrBubbleContainer']";
 		public static final String zBubbleExpand = "css=div.ImgBubbleExpand";
 		
 		public static final String FormatAsHTMLMenu = "css=div[id^='zm__COMPOSE'][style*='z-index'] div[id$='__FORMAT_HTML'] tr[id^='POPUP_zmi__COMPOSE']";
@@ -124,12 +127,12 @@ public class FormMailNew extends AbsForm {
 		public static final String zDirectionRightButton = "css=i[class='mce-ico mce-i-rtl']";
 		public static final String zBoldButton = "css=i[class='mce-ico mce-i-bold']";
 		public static final String zItalicButton = "css=i[class='mce-ico mce-i-italic']";
-		public static final String zTextColorDropdown = "css=div[class='mce-widget mce-btn mce-btn-small mce-colorbutton mce-first'] [class='mce-open']";
-		public static final String zTextBackgroundColorDropdown = "css=div[class='mce-widget mce-btn mce-btn-small mce-colorbutton mce-last'] [class='mce-open']";
+		public static final String zTextColorDropdown = "css=div[class='mce-widget mce-btn mce-btn-small mce-splitbtn mce-colorbutton mce-first'] [class='mce-open']";
+		public static final String zTextBackgroundColorDropdown = "css=div[class='mce-widget mce-btn mce-btn-small mce-splitbtn mce-colorbutton mce-last'] [class='mce-open']";
 		public static final String zTextColorRed = "css=div[data-mce-color='#FF0000']";
 		public static final String zTextColorTransparent = "css=div[data-mce-color='transparent']";
-		public static final String zTextBackgroundColorGreen = "css=div[class='mce-container mce-panel mce-floatpanel mce-popover mce-bottom mce-start']:not([style*='display']) [data-mce-color='#008000']";
-		public static final String zTextBackgroundColorTransparent = "css=div[class='mce-container mce-panel mce-floatpanel mce-popover mce-bottom mce-start']:not([style*='display']) [data-mce-color='transparent']";
+		public static final String zTextBackgroundColorGreen = "css=div[class='mce-container mce-panel mce-floatpanel mce-popover mce-bottom']:not([style*='display']) [data-mce-color='#008000']";
+		public static final String zTextBackgroundColorTransparent = "css=div[class='mce-container mce-panel mce-floatpanel mce-popover mce-bottom']:not([style*='display']) [data-mce-color='transparent']";
 
 		public static final String zAddAttachmentFromOriginalMsgLink = "css=tr[id$='_reply_attachments_link'] a";
 
@@ -1211,6 +1214,9 @@ public class FormMailNew extends AbsForm {
 		if (field == Field.Cc) {
 			locator = Locators.CcField;
 
+		} else if (field == Field.To) {
+			locator = Locators.ToField;
+
 		} else if (field == Field.Body) {
 
 			SleepUtil.sleepMedium();
@@ -1285,6 +1291,7 @@ public class FormMailNew extends AbsForm {
 	}
 
 	public String zGetSignatueImageSrc() throws HarnessException {
+		SleepUtil.sleepMedium();
 		String imageSrc;
 		try {
 
@@ -1306,5 +1313,17 @@ public class FormMailNew extends AbsForm {
 		this.sMouseMoveAt(Locators.zSendIconBtn, "0,0");
 		SleepUtil.sleepLong();
 		this.sClick(dlMemberLcoator);
+	}
+	
+	public boolean zVerifyPrefixInHtmlMailBody() throws HarnessException {
+		boolean status = false;
+		SleepUtil.sleepMedium();
+		try {
+			this.sSelectFrame("css=iframe[id='ZmHtmlEditor1_body_ifr']");
+			status = this.sIsElementPresent(Locators.zPrefixInHeaderReplyCompose) && this.sIsElementPresent(Locators.zPrefixInQuotedTextReplyCompose);
+		} finally {
+			this.sSelectFrame("relative=top");
+		}		
+		return status;
 	}
 }

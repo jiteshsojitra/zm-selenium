@@ -27,13 +27,12 @@ Received: from isode.com (MISHA.isode.net [218.37.230.80]) by
 Message-ID: <40423F33.8020708@isode.com>
 Date: Mon, 01 Mar 2004 04:36:19 +0900
 X-Zimbra-Received: Mon, 01 Mar 2004 04:36:19 +0900
-From: Alexey Melnikov <Alexey.Melnikov@isode.com>
+From: globaladmin@testdomain.com
 User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.4)
 	Gecko/20030624 Netscape/7.1 (ax)
 X-Accept-Language: en-us, en
 MIME-Version: 1.0
-To: Simon Josefsson <jas@extundo.com>
-CC: "Kurt D. Zeilenga" <Kurt@OpenLDAP.org>, SASL WG <ietf-sasl@imc.org>
+To: globaladmin@testdomain.com
 Subject: Re: SASLprep in rfc2222bis-06
 References: <200402162041.PAA20167@ietf.org>
 	 <6.0.1.1.0.20040216200054.04c9df08@127.0.0.1>	<4031F175.1070301@isode.com>
@@ -42,7 +41,7 @@ References: <200402162041.PAA20167@ietf.org>
 	 <ilullmr84gw.fsf@latte.josefsson.org>
 	 <6.0.1.1.0.20040225140352.04ba6fb8@127.0.0.1>
 	 <iluk72a20fy.fsf@latte.josefsson.org>
-In-Reply-To: <iluk72a20fy.fsf@latte.josefsson.org>
+In-Reply-To: globaladmin@testdomain.com
 Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Transfer-Encoding: 7bit
 Sender: owner-ietf-sasl@mail.imc.org

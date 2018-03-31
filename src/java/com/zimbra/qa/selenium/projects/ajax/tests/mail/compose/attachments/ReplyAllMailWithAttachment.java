@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.attachments;
 
-import java.io.File;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
@@ -48,7 +47,8 @@ public class ReplyAllMailWithAttachment extends SetGroupMailByMessagePreference 
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 			final String mimeAttachmentName = "samplejpg.jpg";
 
-			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+			// Inject the sample mime
+			injectMessage(app.zGetActiveAccount(), mimeFile);
 
 			MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
 			ZAssert.assertNotNull(original, "Verify the message is received correctly");

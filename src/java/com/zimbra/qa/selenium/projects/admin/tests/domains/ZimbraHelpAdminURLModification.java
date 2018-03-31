@@ -41,10 +41,10 @@ public class ZimbraHelpAdminURLModification extends AdminCore {
 			groups = { "functional", "L2" })
 
 	public void ZimbraHelpAdminURLModification_01() throws HarnessException {
-		
+
 		CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
 				"mkdir -p /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/admin && echo '<html><head><title>Zimbra Temp Admin Help</title></head><body><h1>Temp Admin Help</h1><p> This is the new admin help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/admin/adminhelp.html");
-		
+
 		// To get domain id
 		String targetDomain = ConfigProperties.getStringProperty("server.host");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(

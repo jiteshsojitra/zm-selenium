@@ -17,22 +17,27 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
-import com.zimbra.qa.selenium.framework.core.*;
-import com.zimbra.qa.selenium.framework.items.*;
+import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.items.MailItem;
+import com.zimbra.qa.selenium.framework.items.RecipientItem;
+import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
 
 public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 	ZimbraAccount account1 = null;
 	ZimbraAccount account2 = null;
 	ZimbraAccount account3 = null;
-	ZimbraAccount account4 = null;
 
 	public ReplyAllMail() {
 		logger.info("New "+ ReplyAllMail.class.getCanonicalName());
@@ -48,7 +53,6 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 			account1 = (new ZimbraAccount()).provision().authenticate();
 			account2 = (new ZimbraAccount()).provision().authenticate();
 			account3 = (new ZimbraAccount()).provision().authenticate();
-			account4 = (new ZimbraAccount()).provision().authenticate();
 		}
 
 		// Send a message to the account
@@ -75,6 +79,12 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 		// Reply the item
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLYALL);
+		
+		// Verify the values populated in To and Cc fields
+		ZAssert.assertEquals(mailform.zGetFieldValue(Field.To),ZimbraAccount.AccountA().EmailAddress," Verify the value populated in To field");
+		ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),account1.EmailAddress, "Verify the Cc field is populated with correct address.");
+		ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),account2.EmailAddress, "Verify the Cc field is populated with correct address.");
+		ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),account3.EmailAddress, "Verify the Cc field is populated with correct address.");
 
 		// Send the message
 		mailform.zSubmit();
@@ -124,7 +134,6 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 			account1 = (new ZimbraAccount()).provision().authenticate();
 			account2 = (new ZimbraAccount()).provision().authenticate();
 			account3 = (new ZimbraAccount()).provision().authenticate();
-			account4 = (new ZimbraAccount()).provision().authenticate();
 		}
 
 		// Send a message to the account
@@ -151,6 +160,12 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 		// Reply the item
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLYALL);
+
+		// Verify the values populated in To and Cc fields
+		ZAssert.assertEquals(mailform.zGetFieldValue(Field.To),ZimbraAccount.AccountA().EmailAddress," Verify the value populated in To field");
+		ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),account1.EmailAddress, "Verify the Cc field is populated with correct address.");
+		ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),account2.EmailAddress, "Verify the Cc field is populated with correct address.");
+		ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),account3.EmailAddress, "Verify the Cc field is populated with correct address.");
 
 		// Send the message
 		mailform.zSubmit();
@@ -201,7 +216,6 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 			account1 = (new ZimbraAccount()).provision().authenticate();
 			account2 = (new ZimbraAccount()).provision().authenticate();
 			account3 = (new ZimbraAccount()).provision().authenticate();
-			account4 = (new ZimbraAccount()).provision().authenticate();
 		}
 
 		// Send a message from the account
@@ -211,6 +225,7 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 					"<m>" +
 						"<e t='t' a='"+ account1.EmailAddress +"'/>" +
 						"<e t='c' a='"+ account2.EmailAddress +"'/>" +
+						"<e t='c' a='"+ account3.EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
 							"<content>content" + ConfigProperties.getUniqueString() +"</content>" +
@@ -231,6 +246,11 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 			// Reply the item
 			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLYALL);
+			
+			// Verify the values populated in To and Cc fields
+			ZAssert.assertEquals(mailform.zGetFieldValue(Field.To),account1.EmailAddress," Verify the value populated in To field");
+			ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),account2.EmailAddress, "Verify the Cc field is populated with correct address.");
+			ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),account3.EmailAddress, "Verify the Cc field is populated with correct address.");
 
 			// Send the message
 			mailform.zSubmit();
@@ -311,6 +331,12 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 		// Reply the item
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLYALL);
+		
+		// Verify the values populated in To and Cc fields
+		ZAssert.assertEquals(mailform.zGetFieldValue(Field.To),ZimbraAccount.AccountA().EmailAddress," Verify the value populated in To field");
+		ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),ZimbraAccount.AccountB().EmailAddress, "Verify the Cc field is populated with correct address.");
+		ZAssert.assertFalse(mailform.zGetFieldValue(Field.Cc).contains(app.zGetActiveAccount().EmailAddress.toUpperCase()), "Verify the Cc field is populated with correct address.");
+
 
 		// Send the message
 		mailform.zSubmit();
@@ -326,33 +352,125 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 			ZAssert.assertNotEqual(r.dEmailAddress.toLowerCase(), app.zGetActiveAccount().EmailAddress.toLowerCase(), "Verify active account is not in the Cc field");
 		}
 	}
-
-
-	@Bugs (ids = "79880")
-	@Test (description = "Verify user account is not To/Cc when mismatched case)",
-			groups = { "functional", "L3" })
+	
+	
+	@Test (description = "ReplyAll to a message which has a differnt Reply To address set--verify the address displayed in To fields on reply-compose",
+			groups = { "functional", "L2" })
 
 	public void ReplyAllMail_05() throws HarnessException {
+		
+		// Account data
+		ZimbraAccount account1 = (new ZimbraAccount()).provision().authenticate();
+		ZimbraAccount account2 = (new ZimbraAccount()).provision().authenticate();
+		
+		// Mail data
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
+		
+		// Set the Reply-To address for the account
+		app.zGetActiveAccount().soapSend(
+				" <ModifyIdentityRequest  xmlns='urn:zimbraAccount'>"
+						+   "<identity id='"+ app.zGetActiveAccount().ZimbraId +"'>"
+						+     "<a name='zimbraPrefFromAddressType'>sendAs</a>"
+						+     "<a name='zimbraPrefReplyToEnabled'>TRUE</a>"
+						+     "<a name='zimbraPrefReplyToAddress'>"+ account2.EmailAddress +"</a>"
+						+   "</identity>"
+						+ "</ModifyIdentityRequest >");
+		
+		// Refresh the UI to get the changes
+		app.zPageMail.zRefreshUI();
+		
+		// Compose a mail and send it to account1
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		
+		// Fill out the form with the data
+		mailform.zFillField(Field.To, account1.EmailAddress + ","+ ZimbraAccount.Account8().EmailAddress + ",");
+		mailform.zFillField(Field.Cc, ZimbraAccount.Account10().EmailAddress + "," + ZimbraAccount.Account9().EmailAddress + ",");
+		mailform.zFillField(Field.Subject, subject);
+		mailform.zFillField(Field.Body, body);
 
-		// Steps:
-		// 1. Receive message to your account, but First.Last@domain.com specified in Cc
-		// 2. Reply-All from the first.last@domain.com account
-		// 3. Verify the sent message does not contain To/Cc for first.last@domain.com or First.Last@domain.com
+		// Send the message
+		mailform.zSubmit();
+		
+		//Login with account1
+		app.zPageLogin.zLogin(account1);
+		
+		// Refresh current view
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
-		// Send a message from the account
-		String subject = "subject"+ ConfigProperties.getUniqueString();
+		// Select the item
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		ZimbraAccount.AccountA().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-					"<m>" +
-						"<e t='t' a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
-						"<e t='c' a='"+ app.zGetActiveAccount().EmailAddress.toUpperCase() +"'/>" +
-						"<su>"+ subject +"</su>" +
-						"<mp ct='text/plain'>" +
-							"<content>content" + ConfigProperties.getUniqueString() +"</content>" +
-						"</mp>" +
-						"</m>" +
-				"</SendMsgRequest>");
+		// Reply the item
+		mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLYALL);
+		
+		// Verify the values populated in To and Cc fields
+		ZAssert.assertEquals(mailform.zGetFieldValue(Field.To),account2.EmailAddress, "Verify the value populated in To field"); // Set Reply-to address is present
+		
+		// Set original sender's address is not present
+		ZAssert.assertFalse(mailform.zGetFieldValue(Field.To).contains(app.zGetActiveAccount().EmailAddress), "Verify the value in To filed is not the orginal email sender's address");
+		
+		ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),ZimbraAccount.Account10().EmailAddress, "Verify the Cc field is populated with correct address.");
+		ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),ZimbraAccount.Account9().EmailAddress, "Verify the Cc field is populated with correct address.");
+		ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),ZimbraAccount.Account8().EmailAddress, "Verify the Cc field is populated with the other To address.");
+		
+		// Send the message
+		mailform.zSubmit();
+
+		// From the receiving end, verify the message details
+		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:("+ subject +")");
+
+		ZAssert.assertEquals(sent.dToRecipients.size(), 1, "Verify the message is sent to 1 'to' recipient");
+		ZAssert.assertEquals(sent.dToRecipients.get(0).dEmailAddress, account2.EmailAddress, "Verify the to field is correct");
+		ZAssert.assertEquals(sent.dCcRecipients.size(), 3, "Verify the message is sent to 2 'cc' recipients");
+		
+		// Verify that the mail is delivered to the set Reply-to address
+		MailItem mailReceived = MailItem.importFromSOAP(account2, "in:inbox subject:("+ subject +")");
+		ZAssert.assertNotNull(mailReceived, "Verify that the reply mail is deliverd to the ser Reply-To address");
+	}
+	
+	
+	@Bugs( ids = "54529")
+	@Test (description = "ReplyAll to a message which has a same Reply To address set -- verify the addresses displayed in To field are not duplicated",
+			groups = { "functional", "L3" })
+
+	public void ReplyAllMail_06() throws HarnessException {
+
+		// Account data
+		ZimbraAccount account1 = (new ZimbraAccount()).provision().authenticate();
+		ZimbraAccount account2 = app.zGetActiveAccount();
+
+		// Mail data
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
+
+		// Set the Reply-To address for the account
+		app.zGetActiveAccount().soapSend(
+				" <ModifyIdentityRequest  xmlns='urn:zimbraAccount'>"
+						+   "<identity id='"+ account2.ZimbraId +"'>"
+						+     "<a name='zimbraPrefFromAddressType'>sendAs</a>"
+						+     "<a name='zimbraPrefReplyToEnabled'>TRUE</a>"
+						+     "<a name='zimbraPrefReplyToAddress'>"+ account2.EmailAddress +"</a>"
+						+   "</identity>"
+						+ "</ModifyIdentityRequest >");
+
+		// Refresh the UI to get the changes
+		app.zPageMail.zRefreshUI();
+
+		// Compose a mail and send it to account1
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+
+		// Fill out the form with the data
+		mailform.zFillField(Field.To, account1.EmailAddress + "," + ZimbraAccount.Account8().EmailAddress);
+		mailform.zFillField(Field.Cc, ZimbraAccount.Account10().EmailAddress + "," + ZimbraAccount.Account9().EmailAddress + ",");
+		mailform.zFillField(Field.Subject, subject);
+		mailform.zFillField(Field.Body, body);
+
+		// Send the message
+		mailform.zSubmit();
+
+		//Login with account1
+		app.zPageLogin.zLogin(account1);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -361,20 +479,26 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Reply the item
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLYALL);
+		mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLYALL);
+		
+		// Verify the values populated in To and Cc fields
+		ZAssert.assertEquals(mailform.zGetFieldValue(Field.To),account2.EmailAddress, "Verify the value populated in To field"); // To filed should not have same address twice
+		ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),ZimbraAccount.Account10().EmailAddress, "Verify the Cc field is populated with correct address.");
+		ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),ZimbraAccount.Account9().EmailAddress, "Verify the Cc field is populated with correct address.");
+		ZAssert.assertStringContains(mailform.zGetFieldValue(Field.Cc),ZimbraAccount.Account8().EmailAddress, "Verify the Cc field is populated with the other To address.");
 
 		// Send the message
 		mailform.zSubmit();
 
-		// Verify the active account is not in the To/Cc
-		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:("+ subject +")");
-		ZAssert.assertNotNull(message, "verify the message in the sent folder");
+		// From the receiving end, verify the message details
+		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:("+ subject +")");
 
-		for ( RecipientItem r : message.dToRecipients) {
-			ZAssert.assertNotEqual(r.dEmailAddress.toLowerCase(), app.zGetActiveAccount().EmailAddress.toLowerCase(), "Verify active account is not in the To field");
-		}
-		for ( RecipientItem r : message.dCcRecipients) {
-			ZAssert.assertNotEqual(r.dEmailAddress.toLowerCase(), app.zGetActiveAccount().EmailAddress.toLowerCase(), "Verify active account is not in the Cc field");
-		}
+		ZAssert.assertEquals(sent.dToRecipients.size(), 1, "Verify the message is sent to 1 'to' recipient");
+		ZAssert.assertEquals(sent.dToRecipients.get(0).dEmailAddress, account2.EmailAddress, "Verify the to field is correct");
+		ZAssert.assertEquals(sent.dCcRecipients.size(), 3, "Verify the message is sent to 0 'cc' recipients");
+		
+		// Verify that the mail is delivered to the set Reply-to address
+		MailItem mailReceived = MailItem.importFromSOAP(account2, "in:inbox subject:("+ subject +")");
+		ZAssert.assertNotNull(mailReceived, "Verify that the reply mail is deliverd to the ser Reply-To address");
 	}
 }

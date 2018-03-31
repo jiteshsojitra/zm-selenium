@@ -38,7 +38,7 @@ public class Login extends AjaxCore {
 		logger.info("New "+ Login.class.getCanonicalName());
 		super.startingPage = app.zPageLogin;
 	}
-	
+
 
 	@Test (description = "Login to the Ajax Client",
 			groups = { "sanity", "L0" })
@@ -51,17 +51,17 @@ public class Login extends AjaxCore {
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
 	}
-	
-		
+
+
 	@Test (description = "Login to the Ajax Client using a locked account",
 			groups = { "smoke", "L1" })
 
 	public void Login_02() throws HarnessException {
-		
+
 		//Create a Zimbra account
 		ZimbraAccount locked = new ZimbraAccount();
 		locked.provision();
-		
+
 		// Lock the account
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
@@ -72,14 +72,14 @@ public class Login extends AjaxCore {
 		app.zPageLogin.zSetLoginName(locked.EmailAddress);
 		app.zPageLogin.zSetLoginPassword(locked.Password);
 		app.zPageLogin.sClickAt(Locators.zBtnLogin, "");
-		
+
 		// Verify the error message displayed
 		ZAssert.assertTrue(app.zPageLogin.zVerifyLoginErrorMessage(), "Verify login error message");
 
 		// Verify main page never becomes active
 		ZAssert.assertFalse(app.zPageMain.zIsActive(), "Verify that login was not successfull for a locked account");
 	}
-	
+
 
 	@Test (description = "Login to the Ajax Client, with a mounted folder",
 			groups = { "functional", "L3" })

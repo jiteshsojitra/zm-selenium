@@ -48,7 +48,7 @@ public class ZimbraHelpDelegatedURLModification extends AdminCore {
 
 			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
 					"mkdir -p /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/DelegatedAdmin && echo '<html><head><title>Zimbra Temp Delegated Admin Help</title></head><body><h1>Temp Delegated Admin Help</h1><p> This is the new Delegated admin help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/DelegatedAdmin/dahelp.html");
-			
+
 			// Login using a delegated admin account
 			app.provisionAuthenticateDA();
 

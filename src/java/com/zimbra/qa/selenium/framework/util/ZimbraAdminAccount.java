@@ -28,7 +28,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 	public ZimbraAdminAccount(String email) {
 		EmailAddress = email;
-		Password = "test123";
+		Password = ConfigProperties.getStringProperty("adminPassword");
 	}
 
 	/**
@@ -57,8 +57,8 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			AccountItem account = new AccountItem(email, ConfigProperties.getStringProperty("testdomain"));
 			ZimbraAdminAccount.AdminConsoleAdmin()
 					.soapSend("<CreateAccountRequest xmlns='urn:zimbraAdmin'>" + "<name>" + account.getEmailAddress()
-							+ "</name>" + "<password>test123</password>"
-							+ "<a xmlns='' n='zimbraIsDelegatedAdminAccount'>TRUE</a>"
+							+ "</name>" + "<password>" + ConfigProperties.getStringProperty("adminPassword")
+							+ "</password>" + "<a xmlns='' n='zimbraIsDelegatedAdminAccount'>TRUE</a>"
 							+ "<a xmlns='' n='zimbraPrefAdminConsoleWarnOnExit'>FALSE</a>" + "</CreateAccountRequest>");
 
 			Element[] createAccountResponse = ZimbraAdminAccount.AdminConsoleAdmin()
@@ -285,7 +285,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	/**
 	 * Get the global admin account This account is defined in config.properties as
 	 * <adminUser>@<server>
-	 * 
+	 *
 	 * @return The global admin account
 	 */
 	public static synchronized ZimbraAdminAccount GlobalAdmin() {

@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.inlineimage;
 
-import java.io.File;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
@@ -38,7 +37,7 @@ public class ReplyMailWithInlineImageAttachment extends SetGroupMailByMessagePre
 
 
 	@Test (description = "Reply to a mail with attachment - Verify inline image sent",
-			groups = { "smoke", "L1", "upload" })
+			groups = { "smoke", "L1", "upload", "non-msedge" })
 
 	public void ReplyMailWithInlineImageAttachment_01() throws HarnessException {
 
@@ -48,7 +47,8 @@ public class ReplyMailWithInlineImageAttachment extends SetGroupMailByMessagePre
 			final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
-			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+			// Inject the sample mime
+			injectMessage(app.zGetActiveAccount(), mimeFile);
 
 			MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
 			ZAssert.assertNotNull(original, "Verify the message is received correctly");

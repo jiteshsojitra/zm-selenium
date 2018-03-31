@@ -64,7 +64,7 @@ class StreamGobbler extends Thread {
 
 public class CommandLineUtility {
 	private static Logger logger = LogManager.getLogger(CommandLineUtility.class);
-	
+
 	/**
 	 * Execute Command line with no STDIN parameter and return the execution status
 	 *
@@ -227,14 +227,14 @@ public class CommandLineUtility {
 		return output;
 	}
 
-	
+
 	public static String runCommandOnStoreServerToGetTOTP(String email, String secret) {
-		
+
 		String privateKey = null;
 		String host = ZimbraAccount.AccountZCS().zGetAccountStoreHost();
 		String command = "sudo su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
 		String totp = "0";
-		
+
 		try {
 
 			java.util.Properties config = new java.util.Properties();
@@ -285,11 +285,11 @@ public class CommandLineUtility {
 	}
 
 	public static ArrayList<String> runCommandOnZimbraServer(String host, String zimbraCommand) {
-		
+
 		String privateKey = null;
 		String command = "sudo su - zimbra -c '" + zimbraCommand + "'";
 		ArrayList<String> out = null;
-		
+
 		try {
 
 			java.util.Properties config = new java.util.Properties();
@@ -335,7 +335,7 @@ public class CommandLineUtility {
 
 		return (out);
 	}
-	
+
 	public static String getUserHome () {
 		String userHome = null;
 		userHome = System.getenv("HOME");

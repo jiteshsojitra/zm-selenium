@@ -51,7 +51,7 @@ public class ZimbraHelpAdvancedURL extends AjaxCore {
 
 			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
 					"mkdir -p /opt/zimbra/jetty/webapps/zimbra/helpUrl/help/adv && echo '<html><head><title>Zimbra Temp Help</title></head><body><h1>Temp Help</h1><p> This is the new advanced help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbra/helpUrl/help/adv/advhelp.html");
-			
+
 			// To get domain id
 			String targetDomain = ConfigProperties.getStringProperty("testdomain");
 			ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetDomainRequest xmlns='urn:zimbraAdmin'>"

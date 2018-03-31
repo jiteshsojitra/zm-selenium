@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts.attachments;
 
-import java.io.File;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
@@ -37,7 +36,7 @@ public class SaveDraftMailWithAttachment extends SetGroupMailByMessagePreference
 
 
 	@Test (description = "Save draft a mail with attachment and send a mail",
-			groups = { "sanity", "L0", "upload" })
+			groups = { "sanity", "L0", "upload", "non-msedge" })
 
 	public void SaveDraftMailWithAttachment_01() throws HarnessException {
 
@@ -106,7 +105,7 @@ public class SaveDraftMailWithAttachment extends SetGroupMailByMessagePreference
 
 
 	@Test (description = "Open existing saved draft with attachment and send a mail",
-			groups = { "functional", "L2", "upload" })
+			groups = { "functional", "L2", "upload", "non-msedge" })
 
 	public void OpenExistingSavedDraftMailWithAttachment_02() throws HarnessException {
 
@@ -120,7 +119,8 @@ public class SaveDraftMailWithAttachment extends SetGroupMailByMessagePreference
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 			FolderItem drafts = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Drafts);
 
-			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+			// Inject the sample mime
+			injectMessage(app.zGetActiveAccount(), mimeFile);
 
 			// Refresh current view
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message displayed in current view");

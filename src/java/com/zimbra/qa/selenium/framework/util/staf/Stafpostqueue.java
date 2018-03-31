@@ -117,7 +117,7 @@ public class Stafpostqueue extends StafServicePROCESS {
 			// Delete each ID one by one
 			deletePostqueueItems(qid);
 
-			throw new HarnessException("Message(s) never delivered from queue.  IDs: " + qid.toString());
+			throw new HarnessException("Message(s) never delivered from queue. IDs: " + qid.toString());
 
 		} else {
 
@@ -125,7 +125,7 @@ public class Stafpostqueue extends StafServicePROCESS {
 			int totalDeferredMessages = 0;
 			SleepUtil.sleepMedium();
 
-			for (int i=0; i<=10; i++) {
+			for (int i=0; i<=5; i++) {
 				totalDeferredMessages = 0;
 				for (int mtaServer=0; mtaServer<ExecuteHarnessMain.mtaServers.size(); mtaServer++) {
 					ZimbraAdminAccount.GlobalAdmin().soapSend("<GetMailQueueRequest xmlns='urn:zimbraAdmin'>"
@@ -144,7 +144,10 @@ public class Stafpostqueue extends StafServicePROCESS {
 				}
 			}
 			if (isMessageDelivered.equals(false)) {
-				throw new HarnessException("Mailq not empty, total deffered messages: " + totalDeferredMessages);
+				String mailqInfo;
+				mailqInfo = "Mailq not empty, total deffered messages: " + totalDeferredMessages;
+				logger.info(mailqInfo);
+				//throw new HarnessException("Mailq not empty, total deffered messages: " + totalDeferredMessages);
 			}
 		}
 	}

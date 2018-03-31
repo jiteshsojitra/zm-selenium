@@ -98,8 +98,10 @@ public class PageMail extends AbsTab {
 
 		public static final String ProposeNewTimeButtonMsgView = "id=zb__TV-main__Inv__PROPOSE_NEW_TIME_title";
 
+		public static final String zMsgViewInfoBar = "css=div#zv__TV__TV-main_MSG_displayImages";
 		public static final String zMsgViewDisplayImgLink = "css=a#zv__TV__TV-main_MSG_displayImages_dispImgs";
 		public static final String zMsgViewDomainLink = "css=a#zv__TV__TV-main_MSG_displayImages_domain";
+		public static final String zMsgViewEmailLink = "css=a#zv__TV__TV-main_MSG_displayImages_email";
 		public static final String zMsgExternalImage = "css=body.MsgBody img";
 		public static final String zMsgViewWarningIcon = "css=div#zv__TV__TV-main_MSG_displayImages.DisplayImages div.ImgWarning";
 		public static final String zConViewDisplayImgLink = "css=a[id$='_displayImages_dispImgs']";
@@ -122,8 +124,11 @@ public class PageMail extends AbsTab {
 		public static final String zMovetToToAddressContextMenu = "css=div[id^='POPUP_DWT'] tbody div[id='MOVE_TO_TO'][class*='ZDisabled'] table tbody tr[id='POPUP_MOVE_TO_TO']";
 		public static final String zMoveToCcAddressContextMenu = "css=div[id^='POPUP_DWT'] tbody div[id='MOVE_TO_CC'] table tbody tr[id='POPUP_MOVE_TO_CC']";
 		public static final String zMoveToBccAddressContextMenu = "css=div[id^='POPUP_DWT'] tbody div[id='MOVE_TO_BCC'] table tbody tr[id='POPUP_MOVE_TO_BCC']";
-
-		// Msg header Address Context menu
+		
+		// Message header Address bubble
+		public static final String zAddressBubbleInHeaderCss = "css=table[id$='_hdrTable'] span.addrBubble";
+		
+		// Message header Address Context menu
 		public static final String zCopyMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='COPY'] table tbody tr[id='POPUP_COPY']";
 		public static final String zFindEmailsMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='SEARCH_MENU'] table tbody tr[id='POPUP_SEARCH_MENU']";
 		public static final String zNewEmailsMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='NEW_MESSAGE'] table tbody tr[id='POPUP_NEW_MESSAGE']";
@@ -1325,6 +1330,14 @@ public class PageMail extends AbsTab {
 
 			page = new DisplayMail(MyApplication);
 
+		} else if (action == Action.A_DOUBLECLICK_TO_NEWWINDOW) {
+
+			// Double-Click on the item
+			this.sDoubleClick(itemlocator);
+			this.zWaitForBusyOverlay();
+			page = new SeparateWindowDisplayMail(this.MyApplication);
+			SleepUtil.sleepLong();
+
 		} else if (action == Action.A_CTRLSELECT) {
 
 			throw new HarnessException("implement me!  action = " + action);
@@ -1418,10 +1431,6 @@ public class PageMail extends AbsTab {
 
 		} else {
 			throw new HarnessException("implement me! action = " + action);
-		}
-
-		if (page != null) {
-			page.zWaitForActive();
 		}
 
 		SleepUtil.sleepMedium();
@@ -1966,6 +1975,8 @@ public class PageMail extends AbsTab {
 	}
 
 	public boolean zHasWDDLinks() throws HarnessException {
+		
+		SleepUtil.sleepMedium();
 
 		if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
 			List<String> locators = Arrays.asList(Locators.zMsgViewDisplayImgLink, Locators.zMsgViewDomainLink,
@@ -1986,7 +1997,7 @@ public class PageMail extends AbsTab {
 			return (true);
 
 		} else {
-			throw new HarnessException("no logic defined  ");
+			throw new HarnessException("no logic defined");
 		}
 	}
 
@@ -2411,5 +2422,14 @@ public class PageMail extends AbsTab {
 			}
 		}
 		return null;
+	}
+	
+	public boolean zVerifyPrefixInDisplayedMail() throws HarnessException {
+		try {
+			this.sSelectFrame("css=iframe[id$='__body__iframe']");
+			return this.sIsElementPresent("body.MsgBody-html div blockquote[style*='border-left: 2px solid rgb(16, 16, 255);']");
+		} finally {
+			this.sSelectFrame("relative=top");
+		}
 	}
 }

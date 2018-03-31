@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.attachments;
 
-import java.io.File;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
@@ -50,7 +49,7 @@ public class ForwardMailWithAttachment extends SetGroupMailByMessagePreference {
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
 			// Send the message to the test account
-			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+			injectMessage(app.zGetActiveAccount(), mimeFile);
 
 			// Refresh current view
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

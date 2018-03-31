@@ -1,6 +1,5 @@
-From: from13016959916873@example.com
-To: to13016959916873@example.com
-Cc: cc13016959916873@example.com
+From: globaladmin@testdomain.com
+To: globaladmin@testdomain.com
 Reply-To: replyto13016959916873@example.com
 Subject: subject13016959916873
 MIME-Version: 1.0 
