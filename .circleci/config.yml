@@ -20,7 +20,7 @@ jobs:
               fingerprints: 47:28:e4:00:8e:67:f5:3e:42:c0:85:2c:84:8f:d1:3e
          - run:
               name: Checkout dependent repos
-	      context: selenium
+              context: selenium
               command: bash -x .circleci/checkout-repos.sh
          - run:
               name: Compile zimbra native
