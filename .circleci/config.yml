@@ -9,6 +9,12 @@ jobs:
          - image: jiteshsojitra/docker-headless-vnc-container
            entrypoint: /dockerstartup/vnc_startup.sh
       context: selenium
+      environment:
+         - ZIMBRA_VERSION
+         - SELENIUM_BROWSER
+         - SELENIUM_SERVER_HOST
+         - SELENIUM_GROUPS
+         - SELENIUM_PATTERN
 
       working_directory: ~/zm-selenium
       steps:
