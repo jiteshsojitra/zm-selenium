@@ -15,12 +15,6 @@ config: &config
       - image: jiteshsojitra/docker-headless-vnc-container
         entrypoint: /dockerstartup/vnc_startup.sh
 
-##############################
-
-jobs:
-   Execute:
-      <<: *config
-
       steps:
          - checkout
          - add_ssh_keys:
@@ -39,6 +33,13 @@ jobs:
          - run:
               name: Configure selenium suite
               command: bash -x .circleci/pre-configurations.sh
+	      
+##############################
+
+jobs:
+   Execute:
+      <<: *config
+
          - run:
               name: Execute selenium tests
               working_directory: ~/zm-selenium
