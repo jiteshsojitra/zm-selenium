@@ -2,6 +2,9 @@
 
 set -euxo pipefail
 
+echo $SELENIUM_SERVER_HOST
+echo $SELENIUM_BROWSER
+
 # Configuration
 seleniumConfigFile="$HOME/zm-selenium/conf/config.properties"
 

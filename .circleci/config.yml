@@ -2,7 +2,7 @@ version: 2
 
 ############################################################################
 
-defaults: &defaults
+setup: &setup
    working_directory: ~/zm-selenium
    docker:
       - image: jiteshsojitra/docker-headless-vnc-container
@@ -13,7 +13,7 @@ defaults: &defaults
 
 jobs:
    Execute:
-      <<: *defaults
+      <<: *setup
 
       steps:
          - checkout
