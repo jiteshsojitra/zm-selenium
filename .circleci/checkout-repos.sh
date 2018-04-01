@@ -13,5 +13,5 @@ git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-network-selen
 public_ip_address=$(wget -qO- http://checkip.amazonaws.com)
 echo $public_ip_address
 
-echo $SELENIUM_SERVER_HOST
 echo $SELENIUM_BROWSER
+echo $SELENIUM_SERVER_HOST
