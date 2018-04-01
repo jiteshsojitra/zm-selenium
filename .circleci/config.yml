@@ -8,8 +8,7 @@ jobs:
       docker:
          - image: jiteshsojitra/docker-headless-vnc-container
            entrypoint: /dockerstartup/vnc_startup.sh
-      context:
-         - selenium
+      context: selenium
 
       working_directory: ~/zm-selenium
       steps:
