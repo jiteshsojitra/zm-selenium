@@ -1,7 +1,6 @@
 #!/bin/bash
 
-set -euxo pipefail
-set +o nounset
+set -eux pipefail
 
 echo $SELENIUM_SERVER_HOST
 echo $SELENIUM_BROWSER
