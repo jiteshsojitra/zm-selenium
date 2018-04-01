@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -eux pipefail
+set -euxo pipefail
+set +o nounset
 
 echo $SELENIUM_SERVER_HOST
 echo $SELENIUM_BROWSER
@@ -23,3 +24,6 @@ sed -i "0,/$configBrowser/s/$configBrowser/$SELENIUM_BROWSER/" $seleniumConfigFi
 # Copy private key to the container
 echo -e "Copy private key to the container"
 cat ~/.ssh/id_rsa_* > ~/.ssh/id_rsa
+
+echo $SELENIUM_SERVER_HOST
+echo $SELENIUM_BROWSER
