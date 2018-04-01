@@ -2,21 +2,19 @@ version: 2
 
 ############################################################################
 
+defaults: &defaults
+   working_directory: ~/zm-selenium
+   docker:
+      - image: jiteshsojitra/docker-headless-vnc-container
+        entrypoint: /dockerstartup/vnc_startup.sh
+   context: selenium
+
+##############################
+
 jobs:
-
    Execute:
-      docker:
-         - image: jiteshsojitra/docker-headless-vnc-container
-           entrypoint: /dockerstartup/vnc_startup.sh
-      context: selenium
-      environment:
-         - ZIMBRA_VERSION
-         - SELENIUM_BROWSER
-         - SELENIUM_SERVER_HOST
-         - SELENIUM_GROUPS
-         - SELENIUM_PATTERN
+      <<: *defaults
 
-      working_directory: ~/zm-selenium
       steps:
          - checkout
          - add_ssh_keys:
