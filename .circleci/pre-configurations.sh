@@ -20,3 +20,7 @@ sed -i "0,/$configBrowser/s/$configBrowser/$SELENIUM_BROWSER/" $seleniumConfigFi
 # Copy private key to the container
 echo -e "Copy private key to the container"
 cat ~/.ssh/id_rsa_* > ~/.ssh/id_rsa
+
+# Generate public key from private key
+echo -e "Generating public key from private key"
+rm -f ~/.ssh/id_rsa.pub && ssh-keygen -f ~/.ssh/id_rsa -y > ~/.ssh/id_rsa.pub
