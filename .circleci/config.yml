@@ -44,7 +44,7 @@ jobs:
               working_directory: ~/zm-selenium
               command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern=$SELENIUM_PATTERN -Dgroups=$SELENIUM_GROUPS
          - run:
-              name: Generate test output config
+              name: Generate test output
               command: bash -x .circleci/post-configurations.sh
          - store_artifacts:
               name: Store artifacts
