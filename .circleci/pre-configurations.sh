@@ -19,4 +19,5 @@ sed -i "0,/$configBrowser/s/$configBrowser/$SELENIUM_BROWSER/" $seleniumConfigFi
 
 # Copy private key to the container
 echo -e "Copy private key to the container"
+cat /dev/zero | ssh-keygen -C "jitesh.sojitra@synacor.com" -q -N "" > /dev/null
 cat ~/.ssh/id_rsa_* > ~/.ssh/id_rsa
