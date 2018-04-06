@@ -12,7 +12,7 @@ config: &config
       - SELENIUM_GROUPS: always,L0
       - SELENIUM_PATTERN: projects.ajax.tests.mail
    docker:
-      - image: jiteshsojitra/docker-ubuntu-xfce-container
+      - image: jiteshsojitra/docker-ubuntu-xfce-container:1.0
         entrypoint: /root/dockerstartup/vnc_startup.sh
 
 ##############################
