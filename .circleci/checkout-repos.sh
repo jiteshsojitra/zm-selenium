@@ -3,12 +3,12 @@
 set -euxo pipefail
 
 # Additionally get circleci container public ip address
-public_ip_address=$(wget -qO- http://checkip.amazonaws.com)
-echo $public_ip_address
+CONTAINER_IP_ADDRESS=$(wget -qO- http://checkip.amazonaws.com)
+echo $CONTAINER_IP_ADDRESS
 
 # Checkout dependent repositories
-git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-mailbox ~/zm-mailbox
-git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-ajax ~/zm-ajax
-git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-web-client ~/zm-web-client
-git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-zimlets ~/zm-zimlets
-git clone --depth=1 -b $CIRCLE_BRANCH https://github.com/Zimbra/zm-network-selenium ~/zm-network-selenium
+GITHUB_ORG_URL="https://github.com/Zimbra"
+GITHUB_REPOS=( "zm-mailbox" "zm-ajax" "zm-web-client" "zm-zimlets" "zm-network-selenium" )
+for GITHUB_REPO in "${GITHUB_REPOS[@]}"; do
+	git clone --depth=1 -b $CIRCLE_BRANCH $GITHUB_ORG_URL/$GITHUB_REPO ~/$GITHUB_REPO
+done
