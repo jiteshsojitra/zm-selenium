@@ -2,6 +2,8 @@
 
 set -euxo pipefail
 
+echo $GITHUB_BRANCH
+
 # Additionally get circleci container public ip address
 CONTAINER_IP_ADDRESS=$(wget -qO- http://checkip.amazonaws.com)
 echo $CONTAINER_IP_ADDRESS
