@@ -2,7 +2,8 @@
 
 set -euxo pipefail
 
-echo $GITHUB_BRANCH
+echo $GITHUB_MASTER_BRANCH
+exit;
 
 # Additionally get circleci container public ip address
 CONTAINER_IP_ADDRESS=$(wget -qO- http://checkip.amazonaws.com)
