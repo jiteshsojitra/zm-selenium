@@ -850,7 +850,7 @@ public class AjaxCore {
 		}
 		SleepUtil.sleepMedium();
 	}
-	
+
 	// Flush mail queue
 	public static void flushMailQueue() throws HarnessException {
 		coreFlushMailQueue("");
@@ -863,10 +863,10 @@ public class AjaxCore {
 			for (int i=0; i<ExecuteHarnessMain.mtaServers.size(); i++) {
 				if (domain == "") {
 					ZimbraAdminAccount.GlobalAdmin().soapSend("<MailQueueActionRequest xmlns='urn:zimbraAdmin'>"
-						+ "<server name='" + ExecuteHarnessMain.mtaServers.get(i) + "'>"
-						+ "<queue name='deferred'><action op='delete' by='query'><query>"
-						+ "</query></action></queue></server>"
-						+ "</MailQueueActionRequest>");
+							+ "<server name='" + ExecuteHarnessMain.mtaServers.get(i) + "'>"
+							+ "<queue name='deferred'><action op='delete' by='query'><query>"
+							+ "</query></action></queue></server>"
+							+ "</MailQueueActionRequest>");
 				} else {
 					ZimbraAdminAccount.GlobalAdmin().soapSend("<MailQueueActionRequest xmlns='urn:zimbraAdmin'>"
 							+ "<server name='" + ExecuteHarnessMain.mtaServers.get(i) + "'>"

@@ -33,12 +33,12 @@ public class BasicRegistration extends AjaxCore {
 
 	@Bugs (ids = "103011")
 	@Test (description = "Register as and external user", priority=3,
-			groups = { "smoke", "L00" })
+			groups = { "smoke", "L0" })
 
 	public void BasicRegistration_01() throws HarnessException {
 
 		String domain = "external.com";
-		
+
 		try {
 
 			ZimbraExternalAccount external = new ZimbraExternalAccount();
