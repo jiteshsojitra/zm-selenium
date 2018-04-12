@@ -332,7 +332,7 @@ public class ExecuteHarnessMain {
 		suite.setName(ConfigProperties.getAppType().toString());
 		suite.setVerbose(verbosity);
 		suite.setThreadCount(4);
-		suite.setParallel(XmlSuite.PARALLEL_TESTS);
+		suite.setParallel(XmlSuite.PARALLEL_NONE);
 
 		// Add all the names per the list of classes
 		for (String testname : getXmlTestNames()) {
