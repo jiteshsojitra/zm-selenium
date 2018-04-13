@@ -5,6 +5,7 @@ set -euxo pipefail
 # Additionally get circleci container public ip address
 CONTAINER_IP_ADDRESS=$(wget -qO- http://checkip.amazonaws.com)
 echo $CONTAINER_IP_ADDRESS
+hostname
 
 # Checkout dependent repositories
 GITHUB_ORG_URL="https://github.com/Zimbra"
